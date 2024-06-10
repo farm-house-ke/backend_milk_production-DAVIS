@@ -1,0 +1,9 @@
+[flake8]
+exclude =
+    venv,
+    .tox,
+    manage.py,
+    migrations,
+    config/settings/*
+
+max-line-length = 120
