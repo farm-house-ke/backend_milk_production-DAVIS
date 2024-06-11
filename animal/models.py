@@ -66,3 +66,34 @@ class AInotPredeterminedServiced(models.Model):
 
     def __str__(self):
         return self.animal
+
+
+class TreatmentRecords(models.Model):
+    """models for treatment of each animal"""
+
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    date_of_diagnosis = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.animal
+
+
+class MedicineTreatment(models.Model):
+    animal = models.ForeignKey(TreatmentRecords, on_delete=models.CASCADE)
+    name_of_vet = models.CharField(max_length=50)
+    date_of_medicine_treatment = models.DateField(default=timezone.now)
+    current_state = models.CharField(
+        max_length=1, choices=(("D", "dead"), ("C", "cured"))
+    )
+    cured = models.CharField(max_length=1, choices=(("S", "sold"), ("N", "not sold")))
+
+
+class Dosagetreatment(models.Model):
+    animal = models.ForeignKey(TreatmentRecords, on_delete=models.CASCADE)
+    name_of_vet = models.CharField(max_length=50)
+    date_of_medicine_treatment = models.DateField(default=timezone.now)
+    dosage_treatment_used = models.CharField(max_length=50)
+    current_state = models.CharField(
+        max_length=1, choices=(("D", "dead"), ("C", "cured"))
+    )
+    cured = models.CharField(max_length=1, choices=(("S", "sold"), ("N", "not sold")))
