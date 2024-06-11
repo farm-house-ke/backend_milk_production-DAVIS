@@ -1,29 +1,61 @@
 """serializer for animal app"""
+
 # serializers.py
 from rest_framework import serializers
-from.models import Animal, Purchased, LocallyServiced, AIPredeterminedServiced, AInotPredeterminedServiced
+from .models import (
+    Animal,
+    Purchased,
+    LocallyServiced,
+    AIPredeterminedServiced,
+    AInotPredeterminedServiced,
+)
+
 
 class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Animal
-        fields = '__all__'
+        fields = (
+            "id",
+            "name",
+            "breed",
+            "gender",
+            "date_of_next_service",
+        )
+
 
 class PurchasedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Purchased
-        fields = '__all__'
+        fields = (
+            "animal",
+            "seller_name",
+            "date_purchased",
+        )
+
 
 class LocallyServicedSerializer(serializers.ModelSerializer):
     class Meta:
         model = LocallyServiced
-        fields = '__all__'
+        fields = ("animal", "name_of_owner", "date_of_service", "birth_date")
+
 
 class AIPredeterminedServicedSerializer(serializers.ModelSerializer):
     class Meta:
         model = AIPredeterminedServiced
-        fields = '__all__'
+        fields = (
+            "animal",
+            "date_of_service",
+            "birth_date",
+            "gender",
+            "date_of_next_service",
+        )
+
 
 class AInotPredeterminedServicedSerializer(serializers.ModelSerializer):
     class Meta:
         model = AInotPredeterminedServiced
-        fields = '__all__'
+        fields = (
+            "animal",
+            "date_of_service",
+            "birth_date",
+        )
