@@ -5,7 +5,7 @@ from .models import (
     Purchased,
     LocallyServiced,
     AIPredeterminedServiced,
-    AInotPredeterminedServiced
+    AInotPredeterminedServiced,
 )
 
 admin.site.register(Animal)
@@ -13,5 +13,3 @@ admin.site.register(Purchased)
 admin.site.register(LocallyServiced)
 admin.site.register(AIPredeterminedServiced)
 admin.site.register(AInotPredeterminedServiced)
-
-
