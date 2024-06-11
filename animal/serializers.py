@@ -8,6 +8,9 @@ from .models import (
     LocallyServiced,
     AIPredeterminedServiced,
     AInotPredeterminedServiced,
+    TreatmentRecords,
+    MedicineTreatment,
+    Dosagetreatment,
 )
 
 
@@ -15,7 +18,6 @@ class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Animal
         fields = (
-            "id",
             "name",
             "breed",
             "gender",
@@ -58,4 +60,41 @@ class AInotPredeterminedServicedSerializer(serializers.ModelSerializer):
             "animal",
             "date_of_service",
             "birth_date",
+        )
+
+
+class TreatmentRecordSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TreatmentRecords
+        fields = (
+            "animal",
+            "date_of_diagnosis",
+        )
+
+
+class MedicineTreatmentSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = MedicineTreatment
+        fields = (
+            "animal",
+            "name_of_vet",
+            "date_of_medicine_treatment",
+            "current_state",
+            "cured",
+        )
+
+
+class DosageTreatmentSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Dosagetreatment
+        fields = (
+            "animal",
+            "name_of_vet",
+            "date_of_medicine_treatment",
+            "dosage_treatment_used",
+            "current_state",
+            "cured",
         )

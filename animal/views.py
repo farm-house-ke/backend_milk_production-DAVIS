@@ -8,6 +8,9 @@ from .models import (
     LocallyServiced,
     AInotPredeterminedServiced,
     AIPredeterminedServiced,
+    TreatmentRecords,
+    MedicineTreatment,
+    Dosagetreatment
 )
 from .serializers import (
     AnimalSerializer,
@@ -15,6 +18,9 @@ from .serializers import (
     LocallyServicedSerializer,
     AIPredeterminedServicedSerializer,
     AInotPredeterminedServicedSerializer,
+    TreatmentRecordSerializer,
+    MedicineTreatmentSerializer,
+    DosageTreatmentSerializer
 )
 
 
@@ -41,3 +47,18 @@ class AIPredeterminedServicedViewSet(viewsets.ModelViewSet):
 class AInotPredeterminedServicedViewSet(viewsets.ModelViewSet):
     queryset = AInotPredeterminedServiced.objects.all()
     serializer_class = AInotPredeterminedServicedSerializer
+
+
+class TreatmentRecordViewSet(viewsets.ModelViewSet):
+    queryset = TreatmentRecords.objects.all()
+    serializer_class = TreatmentRecordSerializer
+
+
+class MedicineTreatmentViewSet(viewsets.ModelViewSet):
+    queryset = MedicineTreatment.objects.all()
+    serializer_class = MedicineTreatmentSerializer
+
+
+class DosagetreatmentViewSet(viewsets.ModelViewSet):
+    queryset = Dosagetreatment.objects.all()
+    serializer_class = DosageTreatmentSerializer
