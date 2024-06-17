@@ -9,7 +9,7 @@ from .models import (
     AInotPredeterminedServiced,
     TreatmentRecords,
     MedicineTreatment,
-    Dosagetreatment
+    Dosagetreatment,
 )
 
 admin.site.register(Animal)

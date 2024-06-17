@@ -10,7 +10,7 @@ from .views import (
     AInotPredeterminedServicedViewSet,
     TreatmentRecordViewSet,
     MedicineTreatmentViewSet,
-    DosagetreatmentViewSet
+    DosagetreatmentViewSet,
 )
 
 router = DefaultRouter()

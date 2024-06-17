@@ -10,7 +10,7 @@ from .models import (
     AIPredeterminedServiced,
     TreatmentRecords,
     MedicineTreatment,
-    Dosagetreatment
+    Dosagetreatment,
 )
 from .serializers import (
     AnimalSerializer,
@@ -20,7 +20,7 @@ from .serializers import (
     AInotPredeterminedServicedSerializer,
     TreatmentRecordSerializer,
     MedicineTreatmentSerializer,
-    DosageTreatmentSerializer
+    DosageTreatmentSerializer,
 )
 
 
