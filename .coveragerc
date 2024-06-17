@@ -1,0 +1,13 @@
+[run]
+omit =
+    venv/*
+    .tox/*
+    config/*
+    manage.py
+    */migrations/*
+    */tests/*
+
+disable_warnings = no-data-collected
+
+[report]
+show_missing = True
