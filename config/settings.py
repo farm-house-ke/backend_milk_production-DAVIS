@@ -61,6 +61,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:8000",
+    "http://192.168.0.102:5173",
+    
+]
+
 AUTH_USER_MODEL = "auth.User"
 
 TEMPLATES = [
