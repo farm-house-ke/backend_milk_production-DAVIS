@@ -22,6 +22,7 @@ class AnimalSerializer(serializers.ModelSerializer):
             "breed",
             "gender",
             "date_of_next_service",
+            "source",
         )
 
 
@@ -74,7 +75,7 @@ class TreatmentRecordSerializer(serializers.ModelSerializer):
 
 
 class MedicineTreatmentSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = MedicineTreatment
         fields = (
@@ -87,7 +88,7 @@ class MedicineTreatmentSerializer(serializers.ModelSerializer):
 
 
 class DosageTreatmentSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = Dosagetreatment
         fields = (

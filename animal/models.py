@@ -3,6 +3,14 @@ from django.utils import timezone
 
 
 class Animal(models.Model):
+
+    SOURCE_CHOICES = (
+        ("purchased", "Purchased"),
+        ("locally_serviced", "Locally Serviced"),
+        ("ai_predetermined", "AI Predetermined"),
+        ("ai_not_predetermined", "AI not Predetermined"),
+    )
+
     name = models.CharField(max_length=50, primary_key=True)
     image = models.ImageField(
         upload_to="static/", null=True, blank=True, default="static/default.jpg"
@@ -12,6 +20,8 @@ class Animal(models.Model):
     date_of_next_service = models.DateField(
         null=True, blank=True, help_text="Only applicable for female"
     )
+
+    source = models.CharField(null=True, max_length=50, choices=SOURCE_CHOICES)
 
     def __str__(self):
         return self.name
