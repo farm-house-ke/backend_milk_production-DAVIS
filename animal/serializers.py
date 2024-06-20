@@ -25,6 +25,19 @@ class AnimalSerializer(serializers.ModelSerializer):
             "source",
         )
 
+        def create(self, validated_data):
+            animal = Animal.objects.create(**validated_data)
+            if validated_data["source"] == "purchased":
+                Purchased.objects.create(animal=animal)
+            elif validated_data["source"] == "locally_serviced":
+                LocallyServiced.objects.create(animal=animal)
+            elif validated_data["source"] == "ai_predetermined":
+                AIPredeterminedServiced.objects.create(animal=animal)
+            elif validated_data["source"] == "ai_not_predetermined":
+                AInotPredeterminedServiced.objects.create(animal=animal)
+
+            return animal
+
 
 class PurchasedSerializer(serializers.ModelSerializer):
     class Meta:
