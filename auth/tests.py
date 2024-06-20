@@ -20,7 +20,7 @@ class RegisterSerializerTest(TestCase):
         }
 
     def test_can_register_user(self):
-        response = self.client.post("/api/register/", self.valid_payload)
+        response = self.client.post("/auth/register/", self.valid_payload)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(User.objects.get().username, "testuser")
