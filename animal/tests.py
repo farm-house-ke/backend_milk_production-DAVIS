@@ -11,6 +11,7 @@ from .models import (
     Dosagetreatment,
 )
 
+
 class RecordTest(TestCase):
     def setUp(self):
         self.animal = Animal.objects.create(name="TestCow")
@@ -22,7 +23,7 @@ class RecordTest(TestCase):
 
     def test_medicine_treatment(self):
         medicine_treatment = MedicineTreatment.objects.create(
-            animal = self.treatment_record,
+            animal=self.treatment_record,
             name_of_vet="TestVet",
             date_of_medicine_treatment=timezone.now(),
         )
@@ -30,13 +31,14 @@ class RecordTest(TestCase):
 
     def test_dosage_treatment(self):
         dosage_treatment = Dosagetreatment.objects.create(
-            animal = self.treatment_record,
+            animal=self.treatment_record,
             name_of_vet="TestVet",
             date_of_medicine_treatment=timezone.now(),
             dosage_treatment_used="TestDosage",
         )
         self.assertEqual(dosage_treatment.name_of_vet, "TestVet")
         self.assertEqual(dosage_treatment.dosage_treatment_used, "TestDosage")
+
 
 class ModelTest(TestCase):
     def setUp(self):
