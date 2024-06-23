@@ -44,7 +44,7 @@ class LocallyServiced(models.Model):
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     name_of_owner = models.CharField(max_length=50)
     date_of_service = models.DateField(default=timezone.now)
-    birth_date = models.DateField()
+    birth_date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.animal
@@ -55,7 +55,7 @@ class AIPredeterminedServiced(models.Model):
 
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     date_of_service = models.DateField(default=timezone.now)
-    birth_date = models.DateField()
+    birth_date = models.DateField(default=timezone.now)
     gender = models.CharField(
         max_length=10, choices=[("female", "Female")], default="female"
     )
@@ -72,7 +72,7 @@ class AInotPredeterminedServiced(models.Model):
 
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     date_of_service = models.DateField(default=timezone.now)
-    birth_date = models.DateField(max_length=50)
+    birth_date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.animal
