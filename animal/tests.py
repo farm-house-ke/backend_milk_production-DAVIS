@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.utils import timezone
+import uuid
 from .models import (
     Animal,
     Purchased,
@@ -10,6 +11,60 @@ from .models import (
     MedicineTreatment,
     Dosagetreatment,
 )
+from .serializers import AnimalSerializer
+
+
+class AnimalSerializerTest(TestCase):
+    """test for animal serializer."""
+
+    def create_animal(self, source):
+        unique_name = "TestAnimal_" + str(uuid.uuid4())
+        animal_data = {
+            "name": unique_name,
+            "breed": "TestBreed",
+            "gender": "F",
+            "date_of_next_service": "2023-01-01",
+            "source": source,
+        }
+        serializer = AnimalSerializer(data=animal_data)
+        if not serializer.is_valid():
+            print(serializer.errors)
+        self.assertTrue(serializer.is_valid())
+        animal = serializer.save()
+        if source == "purchased":
+            purchased = Purchased.objects.create(animal=animal)
+            purchased.save()
+            self.assertTrue(Purchased.objects.filter(animal=animal).exists())
+        elif source == "locally_serviced":
+            locally_serviced = LocallyServiced.objects.create(animal=animal)
+            locally_serviced.save()
+            self.assertTrue(LocallyServiced.objects.filter(animal=animal).exists())
+        elif source == "ai_predetermined":
+            ai_predetermined = AIPredeterminedServiced.objects.create(animal=animal)
+            ai_predetermined.save()
+            self.assertTrue(
+                AIPredeterminedServiced.objects.filter(animal=animal).exists()
+            )
+        elif source == "ai_not_predetermined":
+            ai_not_predetermined = AInotPredeterminedServiced.objects.create(
+                animal=animal
+            )
+            ai_not_predetermined.save()
+            self.assertTrue(
+                AInotPredeterminedServiced.objects.filter(animal=animal).exists()
+            )
+        return animal
+
+    def test_create_animal_with_different_sources(self):
+        sources = [
+            "purchased",
+            "locally_serviced",
+            "ai_predetermined",
+            "ai_not_predetermined",
+        ]
+        for source in sources:
+            with self.subTest(source=source):
+                self.create_animal(source)
 
 
 class RecordTest(TestCase):
