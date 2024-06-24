@@ -72,7 +72,7 @@ class RecordTest(TestCase):
     def setUp(self):
         self.animal = Animal.objects.create(
             name="TestCow",
-            )
+        )
         self.assertEqual(self.animal, "TestCow")
 
     def test_medicine_treatment(self):

@@ -25,6 +25,7 @@ class AnimalViewSet(viewsets.ModelViewSet):
     queryset = Animal.objects.all()
     serializer_class = AnimalSerializer
 
+
 class PurchasedViewSet(viewsets.ModelViewSet):
     queryset = Purchased.objects.all()
     serializer_class = PurchasedSerializer

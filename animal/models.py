@@ -95,6 +95,8 @@ class MedicineTreatment(models.Model):
 
     def __str__(self):
         return self.animal
+
+
 class Dosagetreatment(models.Model):
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     date_of_diagnosis = models.DateField(default=timezone.now)

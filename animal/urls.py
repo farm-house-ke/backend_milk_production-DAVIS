@@ -1,4 +1,5 @@
 """urls for animal app."""
+
 from django.urls import path
 from .views import (
     AnimalViewSet,
