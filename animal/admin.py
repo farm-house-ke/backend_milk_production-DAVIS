@@ -5,9 +5,8 @@ from .models import (
     Animal,
     Purchased,
     LocallyServiced,
-    AIPredeterminedServiced,
-    AInotPredeterminedServiced,
-    TreatmentRecords,
+    AIPredeterminedServiceAnimal,
+    AInonPredeterminedServiceAnimal,
     MedicineTreatment,
     Dosagetreatment,
 )
@@ -15,8 +14,7 @@ from .models import (
 admin.site.register(Animal)
 admin.site.register(Purchased)
 admin.site.register(LocallyServiced)
-admin.site.register(AIPredeterminedServiced)
-admin.site.register(AInotPredeterminedServiced)
-admin.site.register(TreatmentRecords)
+admin.site.register(AIPredeterminedServiceAnimal)
+admin.site.register(AInonPredeterminedServiceAnimal)
 admin.site.register(MedicineTreatment)
 admin.site.register(Dosagetreatment)
