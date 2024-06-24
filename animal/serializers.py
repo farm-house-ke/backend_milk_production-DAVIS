@@ -6,9 +6,8 @@ from .models import (
     Animal,
     Purchased,
     LocallyServiced,
-    AIPredeterminedServiced,
-    AInotPredeterminedServiced,
-    TreatmentRecords,
+    AIPredeterminedServiceAnimal,
+    AInonPredeterminedServiceAnimal,
     MedicineTreatment,
     Dosagetreatment,
 )
@@ -32,9 +31,9 @@ class AnimalSerializer(serializers.ModelSerializer):
             elif validated_data["source"] == "locally_serviced":
                 LocallyServiced.objects.create(animal=animal)
             elif validated_data["source"] == "ai_predetermined":
-                AIPredeterminedServiced.objects.create(animal=animal)
+                AIPredeterminedServiceAnimal.objects.create(animal=animal)
             elif validated_data["source"] == "ai_not_predetermined":
-                AInotPredeterminedServiced.objects.create(animal=animal)
+                AInonPredeterminedServiceAnimal.objects.create(animal=animal)
 
             return animal
 
@@ -57,7 +56,7 @@ class LocallyServicedSerializer(serializers.ModelSerializer):
 
 class AIPredeterminedServicedSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AIPredeterminedServiced
+        model = AIPredeterminedServiceAnimal
         fields = (
             "animal",
             "date_of_service",
@@ -69,21 +68,11 @@ class AIPredeterminedServicedSerializer(serializers.ModelSerializer):
 
 class AInotPredeterminedServicedSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AInotPredeterminedServiced
+        model = AInonPredeterminedServiceAnimal
         fields = (
             "animal",
             "date_of_service",
             "birth_date",
-        )
-
-
-class TreatmentRecordSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = TreatmentRecords
-        fields = (
-            "animal",
-            "date_of_diagnosis",
         )
 
 
@@ -93,6 +82,7 @@ class MedicineTreatmentSerializer(serializers.ModelSerializer):
         model = MedicineTreatment
         fields = (
             "animal",
+            "date_of_diagnosis",
             "name_of_vet",
             "date_of_medicine_treatment",
             "current_state",
@@ -106,6 +96,7 @@ class DosageTreatmentSerializer(serializers.ModelSerializer):
         model = Dosagetreatment
         fields = (
             "animal",
+            "date_of_diagnosis",
             "name_of_vet",
             "date_of_medicine_treatment",
             "dosage_treatment_used",
