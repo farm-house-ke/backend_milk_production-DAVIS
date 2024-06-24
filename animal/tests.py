@@ -5,9 +5,8 @@ from .models import (
     Animal,
     Purchased,
     LocallyServiced,
-    AInotPredeterminedServiced,
-    AIPredeterminedServiced,
-    TreatmentRecords,
+    AInonPredeterminedServiceAnimal,
+    AIPredeterminedServiceAnimal,
     MedicineTreatment,
     Dosagetreatment,
 )
@@ -40,18 +39,20 @@ class AnimalSerializerTest(TestCase):
             locally_serviced.save()
             self.assertTrue(LocallyServiced.objects.filter(animal=animal).exists())
         elif source == "ai_predetermined":
-            ai_predetermined = AIPredeterminedServiced.objects.create(animal=animal)
+            ai_predetermined = AIPredeterminedServiceAnimal.objects.create(
+                animal=animal
+            )
             ai_predetermined.save()
             self.assertTrue(
-                AIPredeterminedServiced.objects.filter(animal=animal).exists()
+                AIPredeterminedServiceAnimal.objects.filter(animal=animal).exists()
             )
         elif source == "ai_not_predetermined":
-            ai_not_predetermined = AInotPredeterminedServiced.objects.create(
+            ai_not_predetermined = AInonPredeterminedServiceAnimal.objects.create(
                 animal=animal
             )
             ai_not_predetermined.save()
             self.assertTrue(
-                AInotPredeterminedServiced.objects.filter(animal=animal).exists()
+                AInonPredeterminedServiceAnimal.objects.filter(animal=animal).exists()
             )
         return animal
 
@@ -69,30 +70,32 @@ class AnimalSerializerTest(TestCase):
 
 class RecordTest(TestCase):
     def setUp(self):
-        self.animal = Animal.objects.create(name="TestCow")
-        self.treatment_record = TreatmentRecords.objects.create(
-            animal=self.animal,
-            date_of_diagnosis=timezone.now(),
-        )
-        self.assertEqual(self.treatment_record.animal, self.animal)
+        self.animal = Animal.objects.create(
+            name="TestCow",
+            )
+        self.assertEqual(self.animal, "TestCow")
 
     def test_medicine_treatment(self):
         medicine_treatment = MedicineTreatment.objects.create(
-            animal=self.treatment_record,
+            animal="TestCow",
+            date_of_diagnosis=timezone.now(),
             name_of_vet="TestVet",
             date_of_medicine_treatment=timezone.now(),
         )
         self.assertEqual(medicine_treatment.name_of_vet, "TestVet")
+        self.assertEqual(medicine_treatment.animal, "TestCow")
 
     def test_dosage_treatment(self):
         dosage_treatment = Dosagetreatment.objects.create(
-            animal=self.treatment_record,
+            animal="TestCow",
+            date_of_diagnosis=timezone.now(),
             name_of_vet="TestVet",
             date_of_medicine_treatment=timezone.now(),
             dosage_treatment_used="TestDosage",
         )
         self.assertEqual(dosage_treatment.name_of_vet, "TestVet")
         self.assertEqual(dosage_treatment.dosage_treatment_used, "TestDosage")
+        self.assertEqual(dosage_treatment.animal, "TestCow")
 
 
 class ModelTest(TestCase):
@@ -104,7 +107,9 @@ class ModelTest(TestCase):
     def test_purchased_creation(self):
         """Test the creation of a purchased object."""
         purchased = Purchased.objects.create(
-            animal=self.animal, seller_name="TestSeller", date_purchased=timezone.now()
+            animal=self.animal,
+            seller_name="TestSeller",
+            date_purchased=timezone.now(),
         )
         self.assertEqual(purchased.animal, self.animal)
         self.assertEqual(purchased.seller_name, "TestSeller")
@@ -120,7 +125,7 @@ class ModelTest(TestCase):
         self.assertEqual(locally_serviced.name_of_owner, "TestOwner")
 
     def test_ai_not_predetermined(self):
-        ai_not_predetermined = AInotPredeterminedServiced.objects.create(
+        ai_not_predetermined = AInonPredeterminedServiceAnimal.objects.create(
             animal=self.animal,
             date_of_service=timezone.now(),
             birth_date=timezone.now(),
@@ -128,7 +133,7 @@ class ModelTest(TestCase):
         self.assertEqual(ai_not_predetermined.animal, self.animal)
 
     def test_ai_predetermined(self):
-        ai_predetermined = AIPredeterminedServiced.objects.create(
+        ai_predetermined = AIPredeterminedServiceAnimal.objects.create(
             animal=self.animal,
             date_of_service=timezone.now(),
             birth_date=timezone.now(),
