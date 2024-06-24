@@ -1,14 +1,12 @@
 """views for animal app."""
 
-# views.py
 from rest_framework import viewsets
 from .models import (
     Animal,
     Purchased,
     LocallyServiced,
-    AInotPredeterminedServiced,
-    AIPredeterminedServiced,
-    TreatmentRecords,
+    AInonPredeterminedServiceAnimal,
+    AIPredeterminedServiceAnimal,
     MedicineTreatment,
     Dosagetreatment,
 )
@@ -18,7 +16,6 @@ from .serializers import (
     LocallyServicedSerializer,
     AIPredeterminedServicedSerializer,
     AInotPredeterminedServicedSerializer,
-    TreatmentRecordSerializer,
     MedicineTreatmentSerializer,
     DosageTreatmentSerializer,
 )
@@ -27,7 +24,6 @@ from .serializers import (
 class AnimalViewSet(viewsets.ModelViewSet):
     queryset = Animal.objects.all()
     serializer_class = AnimalSerializer
-
 
 class PurchasedViewSet(viewsets.ModelViewSet):
     queryset = Purchased.objects.all()
@@ -40,18 +36,13 @@ class LocallyServicedViewSet(viewsets.ModelViewSet):
 
 
 class AIPredeterminedServicedViewSet(viewsets.ModelViewSet):
-    queryset = AIPredeterminedServiced.objects.all()
+    queryset = AIPredeterminedServiceAnimal.objects.all()
     serializer_class = AIPredeterminedServicedSerializer
 
 
 class AInotPredeterminedServicedViewSet(viewsets.ModelViewSet):
-    queryset = AInotPredeterminedServiced.objects.all()
+    queryset = AInonPredeterminedServiceAnimal.objects.all()
     serializer_class = AInotPredeterminedServicedSerializer
-
-
-class TreatmentRecordViewSet(viewsets.ModelViewSet):
-    queryset = TreatmentRecords.objects.all()
-    serializer_class = TreatmentRecordSerializer
 
 
 class MedicineTreatmentViewSet(viewsets.ModelViewSet):
