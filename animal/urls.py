@@ -1,28 +1,113 @@
 """urls for animal app."""
-
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 from .views import (
     AnimalViewSet,
     PurchasedViewSet,
     LocallyServicedViewSet,
     AIPredeterminedServicedViewSet,
     AInotPredeterminedServicedViewSet,
-    TreatmentRecordViewSet,
     MedicineTreatmentViewSet,
     DosagetreatmentViewSet,
 )
 
-router = DefaultRouter()
-router.register(r"animals", AnimalViewSet)
-router.register(r"purchased", PurchasedViewSet)
-router.register(r"locally_serviced", LocallyServicedViewSet)
-router.register(r"ai_predetermined_serviced", AIPredeterminedServicedViewSet)
-router.register(r"ai_not_predetermined_serviced", AInotPredeterminedServicedViewSet)
-router.register(r"treatment_record", TreatmentRecordViewSet)
-router.register(r"medicine_treatment", MedicineTreatmentViewSet)
-router.register(r"dosage_treatment", DosagetreatmentViewSet)
-
 urlpatterns = [
-    path("", include(router.urls)),
+    path("animals/", AnimalViewSet.as_view({"get": "list", "post": "create"})),
+    path(
+        "animals/<int:pk>/",
+        AnimalViewSet.as_view(
+            {
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+    ),
+    path("purchased/", PurchasedViewSet.as_view({"get": "list", "post": "create"})),
+    path(
+        "purchased/<int:pk>/",
+        PurchasedViewSet.as_view(
+            {
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+    ),
+    path(
+        "locally_serviced/",
+        LocallyServicedViewSet.as_view({"get": "list", "post": "create"}),
+    ),
+    path(
+        "locally_serviced/<int:pk>/",
+        LocallyServicedViewSet.as_view(
+            {
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+    ),
+    path(
+        "ai_predetermined/",
+        AIPredeterminedServicedViewSet.as_view({"get": "list", "post": "create"}),
+    ),
+    path(
+        "ai_predetermined/<int:pk>/",
+        AIPredeterminedServicedViewSet.as_view(
+            {
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+    ),
+    path(
+        "ai_non_predetermined/",
+        AInotPredeterminedServicedViewSet.as_view({"get": "list", "post": "create"}),
+    ),
+    path(
+        "ai_non_predetermined/<int:pk>/",
+        AInotPredeterminedServicedViewSet.as_view(
+            {
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+    ),
+    path(
+        "medicinetreatment/",
+        MedicineTreatmentViewSet.as_view({"get": "list", "post": "create"}),
+    ),
+    path(
+        "medicinetreatment/<int:pk>/",
+        MedicineTreatmentViewSet.as_view(
+            {
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+    ),
+    path(
+        "dosagetreatment/",
+        DosagetreatmentViewSet.as_view({"get": "list", "post": "create"}),
+    ),
+    path(
+        "dosagetreatment/<int:pk>/",
+        DosagetreatmentViewSet.as_view(
+            {
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+    ),
 ]
