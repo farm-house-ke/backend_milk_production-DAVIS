@@ -26,7 +26,7 @@ class Animal(models.Model):
     source = models.CharField(null=True, max_length=50, choices=SOURCE_CHOICES)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Purchased(models.Model):
@@ -35,7 +35,7 @@ class Purchased(models.Model):
     date_purchased = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.animal
+        return self.animal.name
 
 
 class LocallyServiced(models.Model):
@@ -45,7 +45,7 @@ class LocallyServiced(models.Model):
     birth_date = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.animal
+        return self.animal.name
 
 
 class AIPredeterminedServiceAnimal(models.Model):
@@ -62,7 +62,7 @@ class AIPredeterminedServiceAnimal(models.Model):
     )
 
     def __str__(self):
-        return self.animal
+        return self.animal.name
 
 
 class AInonPredeterminedServiceAnimal(models.Model):
@@ -73,7 +73,7 @@ class AInonPredeterminedServiceAnimal(models.Model):
     birth_date = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.animal
+        return self.animal.name
 
 
 class MedicineTreatment(models.Model):
@@ -94,7 +94,7 @@ class MedicineTreatment(models.Model):
     cured = models.CharField(max_length=1, choices=(("S", "sold"), ("N", "not sold")))
 
     def __str__(self):
-        return self.animal
+        return f"{self.animal.name} - {self.date_of_diagnosis.strftime('%Y-%m-%d')} - {self.name_of_vet} - {self.date_of_medicine_treatment.strftime('%Y-%m-%d')} - {self.current_state} - {self.cured}"
 
 
 class Dosagetreatment(models.Model):
@@ -111,4 +111,4 @@ class Dosagetreatment(models.Model):
     cured = models.CharField(max_length=1, choices=(("S", "sold"), ("N", "not sold")))
 
     def __str__(self):
-        return self.animal
+        return f"{self.animal.name} - {self.date_of_diagnosis.strftime('%Y-%m-%d')} - {self.name_of_vet} - {self.date_of_medicine_treatment.strftime('%Y-%m-%d')} - {self.dosage_treatment_used} - {self.current_state} - {self.cured}"
