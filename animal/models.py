@@ -6,15 +6,14 @@ from django.core.validators import (
 
 
 class Animal(models.Model):
-    id = models.AutoField(primary_key=True, default=1)
-    SOURCE_CHOICES = (
-        ("purchased", "Purchased"),
-        ("locally_serviced", "Locally Serviced"),
-        ("ai_predetermined", "AI Predetermined"),
-        ("ai_non_predetermined", "AI not Predetermined"),
-    )
-
     name = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+
+    def __str__(self):
+        return self.name
+
+
+class PurchasedAnimal(models.Model):
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     image = models.ImageField(
         upload_to="static/", null=True, blank=True, default="static/default.jpg"
     )
@@ -23,14 +22,6 @@ class Animal(models.Model):
     date_of_next_service = models.DateField(
         null=True, blank=True, help_text="Only applicable for female"
     )
-    source = models.CharField(null=True, max_length=50, choices=SOURCE_CHOICES)
-
-    def __str__(self):
-        return f"{self.name}"
-
-
-class Purchased(models.Model):
-    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     seller_name = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     date_purchased = models.DateField(default=timezone.now)
 
@@ -38,8 +29,18 @@ class Purchased(models.Model):
         return self.animal.name
 
 
-class LocallyServiced(models.Model):
+class LocallyServicedAnimal(models.Model):
+    """Model for locally serviced animals"""
+
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    image = models.ImageField(
+        upload_to="static/", null=True, blank=True, default="static/default.jpg"
+    )
+    breed = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    gender = models.CharField(max_length=1, choices=[("M", "male"), ("F", "female")])
+    date_of_next_service = models.DateField(
+        null=True, blank=True, help_text="Only applicable for female"
+    )
     name_of_owner = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     date_of_service = models.DateField(default=timezone.now)
     birth_date = models.DateField(default=timezone.now)
@@ -52,14 +53,18 @@ class AIPredeterminedServiceAnimal(models.Model):
     """Model for AI predetermined serviced animals."""
 
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
-    date_of_service = models.DateField(default=timezone.now)
-    birth_date = models.DateField(default=timezone.now)
+    image = models.ImageField(
+        upload_to="static/", null=True, blank=True, default="static/default.jpg"
+    )
+    breed = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     gender = models.CharField(
         max_length=10, choices=[("female", "Female")], default="female"
     )
     date_of_next_service = models.DateField(
         null=True, blank=True, help_text="only applicable for female"
     )
+    date_of_service = models.DateField(default=timezone.now)
+    birth_date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.animal.name
@@ -69,6 +74,14 @@ class AInonPredeterminedServiceAnimal(models.Model):
     """Model for AI not predetermined serviced animals."""
 
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    image = models.ImageField(
+        upload_to="static/", null=True, blank=True, default="static/default.jpg"
+    )
+    breed = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    gender = models.CharField(max_length=1, choices=[("M", "male"), ("F", "female")])
+    date_of_next_service = models.DateField(
+        null=True, blank=True, help_text="Only applicable for female"
+    )
     date_of_service = models.DateField(default=timezone.now)
     birth_date = models.DateField(default=timezone.now)
 
