@@ -3,12 +3,12 @@
 from django.urls import path
 from .views import (
     AnimalViewSet,
-    PurchasedViewSet,
-    LocallyServicedViewSet,
-    AIPredeterminedServicedViewSet,
-    AInotPredeterminedServicedViewSet,
+    PurchasedAnimalViewSet,
+    LocallyServicedAnimalViewSet,
+    AIPredeterminedAnimalViewSet,
+    AInonPredeterminedAnimalViewSet,
     MedicineTreatmentViewSet,
-    DosagetreatmentViewSet,
+    DosageTreatmentViewSet,
 )
 
 urlpatterns = [
@@ -24,10 +24,13 @@ urlpatterns = [
             }
         ),
     ),
-    path("purchased/", PurchasedViewSet.as_view({"get": "list", "post": "create"})),
     path(
-        "purchased/<int:pk>/",
-        PurchasedViewSet.as_view(
+        "purchased_animal/",
+        PurchasedAnimalViewSet.as_view({"get": "list", "post": "create"}),
+    ),
+    path(
+        "purchased_animal/<int:pk>/",
+        PurchasedAnimalViewSet.as_view(
             {
                 "get": "retrieve",
                 "put": "update",
@@ -37,12 +40,12 @@ urlpatterns = [
         ),
     ),
     path(
-        "locally_serviced/",
-        LocallyServicedViewSet.as_view({"get": "list", "post": "create"}),
+        "locally_serviced_animal/",
+        LocallyServicedAnimalViewSet.as_view({"get": "list", "post": "create"}),
     ),
     path(
-        "locally_serviced/<int:pk>/",
-        LocallyServicedViewSet.as_view(
+        "locally_serviced_animal/<int:pk>/",
+        LocallyServicedAnimalViewSet.as_view(
             {
                 "get": "retrieve",
                 "put": "update",
@@ -52,12 +55,12 @@ urlpatterns = [
         ),
     ),
     path(
-        "ai_predetermined/",
-        AIPredeterminedServicedViewSet.as_view({"get": "list", "post": "create"}),
+        "ai_predetermined_animal/",
+        AIPredeterminedAnimalViewSet.as_view({"get": "list", "post": "create"}),
     ),
     path(
-        "ai_predetermined/<int:pk>/",
-        AIPredeterminedServicedViewSet.as_view(
+        "ai_predetermined_animal/<int:pk>/",
+        AIPredeterminedAnimalViewSet.as_view(
             {
                 "get": "retrieve",
                 "put": "update",
@@ -67,12 +70,12 @@ urlpatterns = [
         ),
     ),
     path(
-        "ai_non_predetermined/",
-        AInotPredeterminedServicedViewSet.as_view({"get": "list", "post": "create"}),
+        "ai_non_predetermined_animal/",
+        AInonPredeterminedAnimalViewSet.as_view({"get": "list", "post": "create"}),
     ),
     path(
-        "ai_non_predetermined/<int:pk>/",
-        AInotPredeterminedServicedViewSet.as_view(
+        "ai_non_predetermined_animal/<int:pk>/",
+        AInonPredeterminedAnimalViewSet.as_view(
             {
                 "get": "retrieve",
                 "put": "update",
@@ -82,11 +85,11 @@ urlpatterns = [
         ),
     ),
     path(
-        "medicinetreatment/",
+        "medicine_treatment/",
         MedicineTreatmentViewSet.as_view({"get": "list", "post": "create"}),
     ),
     path(
-        "medicinetreatment/<int:pk>/",
+        "medicine_treatment/<int:pk>/",
         MedicineTreatmentViewSet.as_view(
             {
                 "get": "retrieve",
@@ -97,12 +100,12 @@ urlpatterns = [
         ),
     ),
     path(
-        "dosagetreatment/",
-        DosagetreatmentViewSet.as_view({"get": "list", "post": "create"}),
+        "dosage_treatment/",
+        DosageTreatmentViewSet.as_view({"get": "list", "post": "create"}),
     ),
     path(
-        "dosagetreatment/<int:pk>/",
-        DosagetreatmentViewSet.as_view(
+        "dosage_treatment/<int:pk>/",
+        DosageTreatmentViewSet.as_view(
             {
                 "get": "retrieve",
                 "put": "update",
