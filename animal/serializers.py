@@ -1,11 +1,10 @@
-"""serializer for animal app"""
+"""serializer for animal models."""
 
-# serializers.py
 from rest_framework import serializers
 from .models import (
     Animal,
-    Purchased,
-    LocallyServiced,
+    PurchasedAnimal,
+    LocallyServicedAnimal,
     AIPredeterminedServiceAnimal,
     AInonPredeterminedServiceAnimal,
     MedicineTreatment,
@@ -13,70 +12,81 @@ from .models import (
 )
 
 
-class AnimalSerializer(serializers.ModelSerializer):
+class AnimalSerialializer(serializers.ModelSerializer):
+    """serializer for animal model"""
+
     class Meta:
         model = Animal
+        fields = "__all__"
+
+
+class PurchasedAnimalSerializer(serializers.ModelSerializer):
+    """serializer for purchased animal model."""
+
+    class Meta:
+        model = PurchasedAnimal
         fields = (
-            "name",
+            "animal",
+            "image",
             "breed",
             "gender",
             "date_of_next_service",
-            "source",
-        )
-
-        def create(self, validated_data):
-            animal = Animal.objects.create(**validated_data)
-            if validated_data["source"] == "purchased":
-                Purchased.objects.create(animal=animal)
-            elif validated_data["source"] == "locally_serviced":
-                LocallyServiced.objects.create(animal=animal)
-            elif validated_data["source"] == "ai_predetermined":
-                AIPredeterminedServiceAnimal.objects.create(animal=animal)
-            elif validated_data["source"] == "ai_not_predetermined":
-                AInonPredeterminedServiceAnimal.objects.create(animal=animal)
-
-            return animal
-
-
-class PurchasedSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Purchased
-        fields = (
-            "animal",
             "seller_name",
             "date_purchased",
         )
 
 
-class LocallyServicedSerializer(serializers.ModelSerializer):
+class LocallyServicedAnimalSerializer(serializers.ModelSerializer):
+    """serializer for locally serviced animal."""
+
     class Meta:
-        model = LocallyServiced
-        fields = ("animal", "name_of_owner", "date_of_service", "birth_date")
+        model = LocallyServicedAnimal
+        fields = (
+            "animal",
+            "image",
+            "breed",
+            "gender",
+            "date_of_next_service",
+            "name_of_owner",
+            "date_of_service",
+            "birth_date",
+        )
 
 
-class AIPredeterminedServicedSerializer(serializers.ModelSerializer):
+class AIPredeterminedServicedAnimalSerializer(serializers.ModelSerializer):
+    """serializer for ai predetermined serviced animal."""
+
     class Meta:
         model = AIPredeterminedServiceAnimal
         fields = (
             "animal",
-            "date_of_service",
-            "birth_date",
+            "image",
+            "breed",
             "gender",
             "date_of_next_service",
+            "date_of_service",
+            "birth_date",
         )
 
 
-class AInotPredeterminedServicedSerializer(serializers.ModelSerializer):
+class AInonPredeterminedServicedAnimalSerializer(serializers.ModelSerializer):
+    """serializer for ai non predetermined serviced animal."""
+
     class Meta:
         model = AInonPredeterminedServiceAnimal
         fields = (
             "animal",
+            "image",
+            "breed",
+            "gender",
+            "date_of_next_service",
             "date_of_service",
             "birth_date",
         )
 
 
 class MedicineTreatmentSerializer(serializers.ModelSerializer):
+    """serializer for medicine treatment report for animal model."""
 
     class Meta:
         model = MedicineTreatment
@@ -91,6 +101,7 @@ class MedicineTreatmentSerializer(serializers.ModelSerializer):
 
 
 class DosageTreatmentSerializer(serializers.ModelSerializer):
+    """serializer for dosage treatment report for animal model."""
 
     class Meta:
         model = Dosagetreatment
