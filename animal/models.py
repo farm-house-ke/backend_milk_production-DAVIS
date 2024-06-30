@@ -57,7 +57,7 @@ class AIPredeterminedServiceAnimal(models.Model):
     )
     breed = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     gender = models.CharField(
-        max_length=10, choices=[("female", "Female")], default="female"
+        max_length=1, null=True, blank=True, choices=[("M", "male"),("F", "female")], default="female"
     )
     date_of_next_service = models.DateField(
         null=True, blank=True, help_text="only applicable for female"
@@ -72,7 +72,7 @@ class AIPredeterminedServiceAnimal(models.Model):
 class AInonPredeterminedServiceAnimal(models.Model):
     """Model for AI not predetermined serviced animals."""
 
-    pred_animal_name = models.CharField(
+    animal_name = models.CharField(
         null=True, blank=True, max_length=50, validators=[MinLengthValidator(2)]
     )
     image = models.ImageField(
@@ -87,4 +87,4 @@ class AInonPredeterminedServiceAnimal(models.Model):
     birth_date = models.DateField(default=datetime.date.today)
 
     def __str__(self):
-        return f"{self.pred_animal_name}"
+        return f"{self.animal_name}"
