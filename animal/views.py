@@ -1,33 +1,20 @@
 """views for serializer models."""
 
-from rest_framework.response import Response
+# from rest_framework.response import Response
 
 from rest_framework import viewsets
 from .serializers import (
-    AnimalSerialializer,
     PurchasedAnimalSerializer,
     LocallyServicedAnimalSerializer,
     AIPredeterminedServicedAnimalSerializer,
     AInonPredeterminedServicedAnimalSerializer,
-    MedicineTreatmentSerializer,
-    DosageTreatmentSerializer,
 )
 from .models import (
-    Animal,
     PurchasedAnimal,
     LocallyServicedAnimal,
     AIPredeterminedServiceAnimal,
     AInonPredeterminedServiceAnimal,
-    MedicineTreatment,
-    Dosagetreatment,
 )
-
-
-class AnimalViewSet(viewsets.ModelViewSet):
-    """view for animal model."""
-
-    queryset = Animal.objects.all()
-    serializer_class = AnimalSerialializer
 
 
 class PurchasedAnimalViewSet(viewsets.ModelViewSet):
@@ -56,17 +43,3 @@ class AInonPredeterminedAnimalViewSet(viewsets.ModelViewSet):
 
     queryset = AInonPredeterminedServiceAnimal.objects.all()
     serializer_class = AInonPredeterminedServicedAnimalSerializer
-
-
-class MedicineTreatmentViewSet(viewsets.ModelViewSet):
-    """view for medicine report for animal model."""
-
-    queryset = MedicineTreatment.objects.all()
-    serializer_class = MedicineTreatmentSerializer
-
-
-class DosageTreatmentViewSet(viewsets.ModelViewSet):
-    """view for dosage report for animal model."""
-
-    queryset = Dosagetreatment.objects.all()
-    serializer_class = DosageTreatmentSerializer

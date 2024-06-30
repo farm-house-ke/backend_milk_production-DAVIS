@@ -2,23 +2,11 @@
 
 from rest_framework import serializers
 from .models import (
-    Animal,
     PurchasedAnimal,
     LocallyServicedAnimal,
     AIPredeterminedServiceAnimal,
     AInonPredeterminedServiceAnimal,
-    MedicineTreatment,
-    Dosagetreatment,
 )
-
-
-class AnimalSerialializer(serializers.ModelSerializer):
-    """serializer for animal model"""
-
-    class Meta:
-        model = Animal
-        fields = "__all__"
-
 
 class PurchasedAnimalSerializer(serializers.ModelSerializer):
     """serializer for purchased animal model."""
@@ -26,30 +14,16 @@ class PurchasedAnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = PurchasedAnimal
         fields = (
-            "animal",
-            "image",
-            "breed",
-            "gender",
-            "date_of_next_service",
-            "seller_name",
-            "date_purchased",
+            "__all__"
         )
 
 
 class LocallyServicedAnimalSerializer(serializers.ModelSerializer):
     """serializer for locally serviced animal."""
-
     class Meta:
         model = LocallyServicedAnimal
         fields = (
-            "animal",
-            "image",
-            "breed",
-            "gender",
-            "date_of_next_service",
-            "name_of_owner",
-            "date_of_service",
-            "birth_date",
+            "__all__"
         )
 
 
@@ -59,13 +33,7 @@ class AIPredeterminedServicedAnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = AIPredeterminedServiceAnimal
         fields = (
-            "animal",
-            "image",
-            "breed",
-            "gender",
-            "date_of_next_service",
-            "date_of_service",
-            "birth_date",
+            "__all__"
         )
 
 
@@ -75,42 +43,5 @@ class AInonPredeterminedServicedAnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = AInonPredeterminedServiceAnimal
         fields = (
-            "animal",
-            "image",
-            "breed",
-            "gender",
-            "date_of_next_service",
-            "date_of_service",
-            "birth_date",
-        )
-
-
-class MedicineTreatmentSerializer(serializers.ModelSerializer):
-    """serializer for medicine treatment report for animal model."""
-
-    class Meta:
-        model = MedicineTreatment
-        fields = (
-            "animal",
-            "date_of_diagnosis",
-            "name_of_vet",
-            "date_of_medicine_treatment",
-            "current_state",
-            "cured",
-        )
-
-
-class DosageTreatmentSerializer(serializers.ModelSerializer):
-    """serializer for dosage treatment report for animal model."""
-
-    class Meta:
-        model = Dosagetreatment
-        fields = (
-            "animal",
-            "date_of_diagnosis",
-            "name_of_vet",
-            "date_of_medicine_treatment",
-            "dosage_treatment_used",
-            "current_state",
-            "cured",
+            "__all__"
         )
