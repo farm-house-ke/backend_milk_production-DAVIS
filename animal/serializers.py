@@ -33,7 +33,13 @@ class AIPredeterminedServicedAnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = AIPredeterminedServiceAnimal
         fields = (
-            "__all__"
+            "animal_name",
+            "image",
+            "breed",
+            "gender",
+            "date_of_next_service",
+            "date_of_service",
+            "birth_date",
         )
 
 
@@ -43,5 +49,11 @@ class AInonPredeterminedServicedAnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = AInonPredeterminedServiceAnimal
         fields = (
-            "__all__"
+            "animal_name",
+            "image",
+            "breed",
+            "gender",
+            "date_of_next_service",
+            "date_of_service",
+            "birth_date",
         )
