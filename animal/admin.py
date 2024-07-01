@@ -4,12 +4,11 @@ from django.contrib import admin
 from .models import (
     PurchasedAnimal,
     LocallyServicedAnimal,
-    AIPredeterminedServiceAnimal,
-    AInonPredeterminedServiceAnimal,
+    AIPredeterminedAndNonPredeterminedServiceAnimal,
 )
 
 
 admin.site.register(PurchasedAnimal)
 admin.site.register(LocallyServicedAnimal)
-admin.site.register(AIPredeterminedServiceAnimal)
-admin.site.register(AInonPredeterminedServiceAnimal)
+admin.site.register(AIPredeterminedAndNonPredeterminedServiceAnimal)
+
