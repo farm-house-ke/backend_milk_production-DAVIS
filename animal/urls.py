@@ -4,7 +4,8 @@ from django.urls import path
 from .views import (
     PurchasedAnimalViewSet,
     LocallyServicedAnimalViewSet,
-    AIPredeterminedAndNonPredeterminedAnimalViewSet,
+    AInonPredeterminedServiceAnimalViewSet,
+    AIPredeterminedServiceAnimalViewSet,
 )
 
 urlpatterns = [
@@ -39,12 +40,29 @@ urlpatterns = [
         ),
     ),
     path(
-        "ai_predetermined_animal/",
-        AIPredeterminedAndNonPredeterminedAnimalViewSet.as_view({"get": "list", "post": "create"}),
+        "ai_predetermined_service_animal/",
+        AIPredeterminedServiceAnimalViewSet.as_view({"get": "list", "post": "create"}),
     ),
     path(
-        "ai_predetermined_animal/<int:pk>/",
-        AIPredeterminedAndNonPredeterminedAnimalViewSet.as_view(
+        "ai_predetermined_service_animal/<int:pk>/",
+        AIPredeterminedServiceAnimalViewSet.as_view(
+            {
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+    ),
+    path(
+        "ai_non_predetermined_service_animal/",
+        AInonPredeterminedServiceAnimalViewSet.as_view(
+            {"get": "list", "post": "create"}
+        ),
+    ),
+    path(
+        "ai_non_predetermined_service_animal/<int:pk>/",
+        AInonPredeterminedServiceAnimalViewSet.as_view(
             {
                 "get": "retrieve",
                 "put": "update",

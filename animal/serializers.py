@@ -4,7 +4,8 @@ from rest_framework import serializers
 from .models import (
     PurchasedAnimal,
     LocallyServicedAnimal,
-    AIPredeterminedAndNonPredeterminedServiceAnimal,
+    AIPredeterminedServiceAnimal,
+    AInonPredeterminedServicedAnimal,
 )
 
 
@@ -24,33 +25,17 @@ class LocallyServicedAnimalSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class AIPredeterminedAndNonPredeterminedServicedAnimalSerializer(serializers.ModelSerializer):
+class AIPredeterminedServiceAnimalSerializer(serializers.ModelSerializer):
     """serializer for ai predetermined serviced animal."""
 
     class Meta:
-        model = AIPredeterminedAndNonPredeterminedServiceAnimal
-        fields = (
-            "animal_name",
-            "image",
-            "breed",
-            "gender",
-            "date_of_next_service",
-            "date_of_service",
-            "birth_date",
-        )
+        model = AIPredeterminedServiceAnimal
+        fields = "__all__"
 
 
-# class AInonPredeterminedServicedAnimalSerializer(serializers.ModelSerializer):
-#     """serializer for ai non predetermined serviced animal."""
+class AInonPredeterminedServiceAnimalSerializer(serializers.ModelSerializer):
+    """serializer for ai non predetermined serviced animal."""
 
-#     class Meta:
-#         model = AInonPredeterminedServiceAnimal
-#         fields = (
-#             "animal_name",
-#             "image",
-#             "breed",
-#             "gender",
-#             "date_of_next_service",
-#             "date_of_service",
-#             "birth_date",
-#         )
+    class Meta:
+        model = AInonPredeterminedServicedAnimal
+        fields = "__all__"

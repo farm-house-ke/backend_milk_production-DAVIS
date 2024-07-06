@@ -6,13 +6,14 @@ from rest_framework import viewsets
 from .serializers import (
     PurchasedAnimalSerializer,
     LocallyServicedAnimalSerializer,
-    AIPredeterminedAndNonPredeterminedServicedAnimalSerializer,
+    AIPredeterminedServiceAnimalSerializer,
+    AInonPredeterminedServiceAnimalSerializer,
 )
 from .models import (
     PurchasedAnimal,
     LocallyServicedAnimal,
-    AIPredeterminedAndNonPredeterminedServiceAnimal,
-
+    AIPredeterminedServiceAnimal,
+    AInonPredeterminedServicedAnimal,
 )
 
 
@@ -30,8 +31,15 @@ class LocallyServicedAnimalViewSet(viewsets.ModelViewSet):
     serializer_class = LocallyServicedAnimalSerializer
 
 
-class AIPredeterminedAndNonPredeterminedAnimalViewSet(viewsets.ModelViewSet):
-    """view for ai predetermined animal."""
+class AIPredeterminedServiceAnimalViewSet(viewsets.ModelViewSet):
+    """view for AI predetermined serviced animal."""
 
-    queryset = AIPredeterminedAndNonPredeterminedServiceAnimal.objects.all()
-    serializer_class = AIPredeterminedAndNonPredeterminedServicedAnimalSerializer
+    queryset = AIPredeterminedServiceAnimal.objects.all()
+    serializer_class = AIPredeterminedServiceAnimalSerializer
+
+
+class AInonPredeterminedServiceAnimalViewSet(viewsets.ModelViewSet):
+    """view for AI non predetermined serviced animal."""
+
+    queryset = AInonPredeterminedServicedAnimal.objects.all()
+    serializer_class = AInonPredeterminedServiceAnimalSerializer
