@@ -107,7 +107,7 @@ class AInonPredeterminedMedicineViewSet(viewsets.ModelViewSet):
     """view for ai non predetermined serviced medicine report."""
 
     queryset = AInonPredeterminedMedicineTreatment.objects.all()
-    serializer_class = AInonPredeterminedDosageSerializer
+    serializer_class = AInonPredeterminedMedicineSerializer
 
 
 class AInonPredeterminedDosageViewSet(viewsets.ModelViewSet):
