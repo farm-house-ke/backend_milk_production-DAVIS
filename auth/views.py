@@ -23,7 +23,7 @@ class RegisterView(generics.CreateAPIView):
                     user, context=self.get_serializer_context()
                 ).data
             },
-            status=status.HTTP_201_CREATED
+            status=status.HTTP_201_CREATED,
         )
 
 
