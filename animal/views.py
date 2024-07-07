@@ -8,12 +8,28 @@ from .serializers import (
     LocallyServicedAnimalSerializer,
     AIPredeterminedServiceAnimalSerializer,
     AInonPredeterminedServiceAnimalSerializer,
+    PurchasedDosageSerializer,
+    PurchasedMedicineSerializer,
+    LocallyServicedDosageSerializer,
+    LocallyServicedMedicineSerializer,
+    AIPredeterminedDosageSerializer,
+    AIPredeterminedMedicineSerializer,
+    AInonPredeterminedDosageSerializer,
+    AInonPredeterminedMedicineSerializer,
 )
 from .models import (
     PurchasedAnimal,
     LocallyServicedAnimal,
     AIPredeterminedServiceAnimal,
     AInonPredeterminedServicedAnimal,
+    PurchasedDosageTreatment,
+    PurchasedMedicineTreatment,
+    LocallyServicedDosageTreatment,
+    LocallyServicedMedicineTreatment,
+    AIPredeterminedDosageTreatment,
+    AIPredeterminedMedicineTreatment,
+    AInonPredeterminedMedicineTreatment,
+    AInonPredeterminedDosageTreatment,
 )
 
 
@@ -24,11 +40,39 @@ class PurchasedAnimalViewSet(viewsets.ModelViewSet):
     serializer_class = PurchasedAnimalSerializer
 
 
+class PurchasedDosageViewSet(viewsets.ModelViewSet):
+    """view for purchased dosage report."""
+
+    queryset = PurchasedDosageTreatment.objects.all()
+    serializer_class = PurchasedDosageSerializer
+
+
+class PurchasedMedicineViewSet(viewsets.ModelViewSet):
+    """view for purchased medicine report."""
+
+    queryset = PurchasedMedicineTreatment.objects.all()
+    serializer_class = PurchasedMedicineSerializer
+
+
 class LocallyServicedAnimalViewSet(viewsets.ModelViewSet):
     """view for locally serviced animal."""
 
     queryset = LocallyServicedAnimal.objects.all()
     serializer_class = LocallyServicedAnimalSerializer
+
+
+class LocallyServicedMedicineViewSet(viewsets.ModelViewSet):
+    """view for locally serviced medicine report."""
+
+    queryset = LocallyServicedMedicineTreatment.objects.all()
+    serializer_class = LocallyServicedMedicineSerializer
+
+
+class LocallyServicedDosageViewSet(viewsets.ModelViewSet):
+    """view for locally serviced dosage report."""
+
+    queryset = LocallyServicedDosageTreatment.objects.all()
+    serializer_class = LocallyServicedDosageSerializer
 
 
 class AIPredeterminedServiceAnimalViewSet(viewsets.ModelViewSet):
@@ -38,8 +82,36 @@ class AIPredeterminedServiceAnimalViewSet(viewsets.ModelViewSet):
     serializer_class = AIPredeterminedServiceAnimalSerializer
 
 
+class AIPredeterminedMedicineViewSet(viewsets.ModelViewSet):
+    """view for ai predetermined serviced medicine report."""
+
+    queryset = AIPredeterminedMedicineTreatment.objects.all()
+    serializer_class = AIPredeterminedMedicineSerializer
+
+
+class AIPredeterminedDosageViewSet(viewsets.ModelViewSet):
+    """view for ai predetermined serviced dosage report."""
+
+    queryset = AIPredeterminedDosageTreatment.objects.all()
+    serializer_class = AIPredeterminedDosageSerializer
+
+
 class AInonPredeterminedServiceAnimalViewSet(viewsets.ModelViewSet):
     """view for AI non predetermined serviced animal."""
 
     queryset = AInonPredeterminedServicedAnimal.objects.all()
     serializer_class = AInonPredeterminedServiceAnimalSerializer
+
+
+class AInonPredeterminedMedicineViewSet(viewsets.ModelViewSet):
+    """view for ai non predetermined serviced medicine report."""
+
+    queryset = AInonPredeterminedMedicineTreatment.objects.all()
+    serializer_class = AInonPredeterminedDosageSerializer
+
+
+class AInonPredeterminedDosageViewSet(viewsets.ModelViewSet):
+    """view for ai non predetermined serviced dosage report."""
+
+    queryset = AInonPredeterminedDosageTreatment.objects.all()
+    serializer_class = AInonPredeterminedDosageSerializer
