@@ -75,6 +75,7 @@ class AIPredeterminedServiceAnimal(models.Model):
     def __str__(self):
         return f"{self.animal_name}"
 
+
 class AInonPredeterminedServicedAnimal(models.Model):
     """Model for AI non predetermined serviced animals."""
 
@@ -104,3 +105,171 @@ class AInonPredeterminedServicedAnimal(models.Model):
 
     def __str__(self):
         return f"{self.animal_name}"
+
+
+class PurchasedMedicineTreatment(models.Model):
+    animal_name = models.ForeignKey(PurchasedAnimal, on_delete=models.CASCADE)
+    date_of_diagnosis = models.DateField(default=timezone.now())
+    name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    date_of_medication = models.DateField(default=timezone.now())
+    STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
+    current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
+    SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
+    sold_status = models.CharField(
+        max_length=50,
+        choices=SOLD_CHOICES,
+        blank=True,
+        null=True,
+        help_text="Select only if animal is cured.",
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class LocallyServicedMedicineTreatment(models.Model):
+    animal_name = models.ForeignKey(LocallyServicedAnimal, on_delete=models.CASCADE)
+    date_of_diagnosis = models.DateField(default=timezone.now())
+    name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    date_of_medication = models.DateField(default=timezone.now())
+    STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
+    current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
+    SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
+    sold_status = models.CharField(
+        max_length=50,
+        choices=SOLD_CHOICES,
+        blank=True,
+        null=True,
+        help_text="Select only if animal is cured.",
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class AIPredeterminedMedicineTreatment(models.Model):
+    animal_name = models.ForeignKey(
+        AIPredeterminedServiceAnimal, on_delete=models.CASCADE
+    )
+    date_of_diagnosis = models.DateField(default=timezone.now())
+    name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    date_of_medication = models.DateField(default=timezone.now())
+    STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
+    current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
+    SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
+    sold_status = models.CharField(
+        max_length=50,
+        choices=SOLD_CHOICES,
+        blank=True,
+        null=True,
+        help_text="Select only if animal is cured.",
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class AInonPredeterminedMedicineTreatment(models.Model):
+    animal_name = models.ForeignKey(
+        AInonPredeterminedServicedAnimal, on_delete=models.CASCADE
+    )
+    date_of_diagnosis = models.DateField(default=timezone.now())
+    name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    date_of_medication = models.DateField(default=timezone.now())
+    STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
+    current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
+    SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
+    sold_status = models.CharField(
+        max_length=50,
+        choices=SOLD_CHOICES,
+        blank=True,
+        null=True,
+        help_text="Select only if animal is cured.",
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class PurchasedDosageTreatment(models.Model):
+    animal_name = models.ForeignKey(PurchasedAnimal, on_delete=models.CASCADE)
+    date_of_diagnosis = models.DateField(default=timezone.now())
+    name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    date_of_first_dosage = models.DateField(default=timezone.now())
+    dosage_treatment_used = models.CharField(
+        max_length=50, validators=[MinLengthValidator(2)]
+    )
+    STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
+    current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
+    SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
+    sold_status = models.CharField(
+        max_length=50,
+        choices=SOLD_CHOICES,
+        blank=True,
+        null=True,
+        help_text="Select only if animal is cured.",
+    )
+
+
+class LocallyServicedDosageTreatment(models.Model):
+    animal_name = models.ForeignKey(LocallyServicedAnimal, on_delete=models.CASCADE)
+    date_of_diagnosis = models.DateField(default=timezone.now())
+    name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    date_of_first_dosage = models.DateField(default=timezone.now())
+    dosage_treatment_used = models.CharField(
+        max_length=50, validators=[MinLengthValidator(2)]
+    )
+    STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
+    current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
+    SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
+    sold_status = models.CharField(
+        max_length=50,
+        choices=SOLD_CHOICES,
+        blank=True,
+        null=True,
+        help_text="Select only if animal is cured.",
+    )
+
+
+class AIPredeterminedDosageTreatment(models.Model):
+    animal_name = models.ForeignKey(
+        AIPredeterminedServiceAnimal, on_delete=models.CASCADE
+    )
+    date_of_diagnosis = models.DateField(default=timezone.now())
+    name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    date_of_first_dosage = models.DateField(default=timezone.now())
+    dosage_treatment_used = models.CharField(
+        max_length=50, validators=[MinLengthValidator(2)]
+    )
+    STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
+    current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
+    SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
+    sold_status = models.CharField(
+        max_length=50,
+        choices=SOLD_CHOICES,
+        blank=True,
+        null=True,
+        help_text="Select only if animal is cured.",
+    )
+
+
+class AInonPredeterminedDosageTreatment(models.Model):
+    animal_name = models.ForeignKey(
+        AInonPredeterminedServicedAnimal, on_delete=models.CASCADE
+    )
+    date_of_diagnosis = models.DateField(default=timezone.now())
+    name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    date_of_first_dosage = models.DateField(default=timezone.now())
+    dosage_treatment_used = models.CharField(
+        max_length=50, validators=[MinLengthValidator(2)]
+    )
+    STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
+    current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
+    SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
+    sold_status = models.CharField(
+        max_length=50,
+        choices=SOLD_CHOICES,
+        blank=True,
+        null=True,
+        help_text="Select only if animal is cured.",
+    )
