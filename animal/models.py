@@ -124,7 +124,7 @@ class PurchasedMedicineTreatment(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.animal_name
 
 
 class LocallyServicedMedicineTreatment(models.Model):
@@ -144,7 +144,7 @@ class LocallyServicedMedicineTreatment(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.animal_name
 
 
 class AIPredeterminedMedicineTreatment(models.Model):
@@ -166,7 +166,7 @@ class AIPredeterminedMedicineTreatment(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.animal_name
 
 
 class AInonPredeterminedMedicineTreatment(models.Model):
@@ -188,7 +188,7 @@ class AInonPredeterminedMedicineTreatment(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.animal_name
 
 
 class PurchasedDosageTreatment(models.Model):

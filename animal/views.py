@@ -1,7 +1,8 @@
 """views for serializer models."""
 
-# from rest_framework.response import Response
-
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
 from rest_framework import viewsets
 from .serializers import (
     PurchasedAnimalSerializer,
@@ -38,7 +39,6 @@ class PurchasedAnimalViewSet(viewsets.ModelViewSet):
 
     queryset = PurchasedAnimal.objects.all()
     serializer_class = PurchasedAnimalSerializer
-
 
 class PurchasedDosageViewSet(viewsets.ModelViewSet):
     """view for purchased dosage report."""
