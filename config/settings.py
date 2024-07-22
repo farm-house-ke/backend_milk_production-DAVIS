@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "corsheaders",
     "animal",
+    "user",
     "rest_framework",
     "rest_framework_simplejwt",
 ]
@@ -68,8 +69,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.0.121:5173",
     "http://192.168.0.121:8000",
 ]
-
-AUTH_USER_MODEL = "auth.User"
 
 TEMPLATES = [
     {
