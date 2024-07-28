@@ -70,6 +70,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.0.121:8000",
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",

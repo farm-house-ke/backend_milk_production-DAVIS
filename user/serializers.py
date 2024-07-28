@@ -7,7 +7,7 @@ User = get_user_model()
 class UserSignUpSerializer(serializers.ModelSerializer):
     """sign up serializer."""
     password = serializers.CharField(write_only=True)
-    
+    username = serializers.CharField(read_only=True)
     class Meta:
         model = User
         fields = ["email","username", "password"]
@@ -20,3 +20,6 @@ class UserSignUpSerializer(serializers.ModelSerializer):
             password = validated_data["password"],
         )
         return user
+    def get_usernames(self):
+        """return username."""
+        return User.objects.values_list("username", flat=True)
