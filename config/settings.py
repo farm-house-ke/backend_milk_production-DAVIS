@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "animal",
     "user",
     "rest_framework",
-    "rest_framework_simplejwt",
+    "rest_framework.authtoken",
 ]
 
 REST_FRAMEWORK = {
