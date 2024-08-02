@@ -2,9 +2,11 @@
 
 from django.contrib.auth import login, get_user_model
 from rest_framework import viewsets, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 
 User = get_user_model()
 from .serializers import UserSignUpSerializer, UserLoginSerializer
@@ -23,15 +25,27 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         login(request, user)
-        token, created = Token.objects.get_or_create(user=user)
+        refresh = RefreshToken.for_user(user)
         return Response(
             {
-                "token": token.key,
-                "user": {
-                    "id": user.id,
-                    "email": user.email,
-                    "username": user.username,
-                },
+                "refresh": str(refresh),
+                "access": str(refresh.access_token),
+                "user_id": user.id,
+                "username": user.username,
             },
             status=status.HTTP_200_OK,
         )
+
+class LogoutView(APIView):
+    """logout view."""
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        """logout user."""
+        try:
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
