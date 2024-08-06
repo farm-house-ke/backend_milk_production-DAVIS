@@ -6,9 +6,13 @@ from .models import (
     AInonPredeterminedServicedAnimal,
     MedicineTreatment,
     DosageTreatment,
+    AnimalBase,
 )
 
-
+class AnimalBaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnimalBase
+        fields = "__all__"
 class PurchasedAnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = PurchasedAnimal
