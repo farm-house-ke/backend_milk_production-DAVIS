@@ -10,7 +10,7 @@ class AnimalBase(models.Model):
 
     animal_name = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     image = models.ImageField(
-        upload_to="animals/%Y/%m/%d/", blank=False, default="static/default.jpg"
+        upload_to="static/", blank=False, default="static/default.jpg"
     )
     breed = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     gender = models.CharField(max_length=1, choices=[("M", "male"), ("F", "female")])
@@ -50,7 +50,7 @@ class LocallyServicedAnimal(AnimalBase):
 
 class AIPredeterminedServiceAnimal(AnimalBase):
     """Model for AI predetermined serviced animals."""
-
+    ai_gender = models.CharField(max_length=1, default="F", editable=False)
     date_of_service = models.DateField(
         default=timezone.now(),
     )
@@ -103,3 +103,7 @@ class DosageTreatment(models.Model):
         null=True,
         help_text="Select only if animal is cured.",
     )
+    dosage_treatment_used = models.CharField(max_length=100, default="Not specified")
+
+    def __str__(self):
+        return f"{self.animal_name} - {self.current_state}"
