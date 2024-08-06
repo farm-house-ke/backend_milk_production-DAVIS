@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from corsheaders.defaults import default_headers
 from datetime import timedelta
 import os
 
@@ -79,6 +80,27 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://192.168.0.121:5173",
     "http://192.168.0.121:8000",
+]
+
+COR_ALLOW_HEADERS = list(default_headers) + [
+    "Authorization",
+    "x-requested-with",
+    "accept",
+    "origin",
+    "user-agent",
+    "dnt",
+    "cache-control",
+    "x-csrftoken",
+    "x-frame-options",
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
