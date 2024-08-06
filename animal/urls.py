@@ -8,10 +8,12 @@ from .views import (
     AIPredeterminedViewSet,
     AInonPredeterminedViewSet,
     MedicineTreatmentViewSet,
+    AnimalBaseViewSet,
     DosageTreatmentViewSet
 )
 
 router = DefaultRouter()
+router.register(r"animal_base", AnimalBaseViewSet)
 router.register(r"purchased_animal", PurchasedViewSet)
 router.register(r"locally_serviced_animal", LocallyServicedViewSet)
 router.register(
