@@ -2,6 +2,7 @@
 
 from rest_framework import viewsets
 from .serializers import (
+    AnimalBaseSerializer,
     PurchasedAnimalSerializer,
     LocallyServicedAnimalSerializer,
     AIPredeterminedServiceAnimalSerializer,
@@ -10,6 +11,7 @@ from .serializers import (
     DosageTreatmentSerializer,
 )
 from .models import (
+    AnimalBase,
     PurchasedAnimal,
     LocallyServicedAnimal,
     AIPredeterminedServiceAnimal,
@@ -47,3 +49,7 @@ class MedicineTreatmentViewSet(viewsets.ModelViewSet):
 class DosageTreatmentViewSet(viewsets.ModelViewSet):
     queryset = DosageTreatment.objects.all()
     serializer_class = DosageTreatmentSerializer
+
+class AnimalBaseViewSet(viewsets.ModelViewSet):
+    queryset = AnimalBase.objects.all()
+    serializer_class = AnimalBaseSerializer
