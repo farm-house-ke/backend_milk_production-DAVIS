@@ -73,9 +73,9 @@ class AInonPredeterminedServicedAnimal(AnimalBase):
 
 class MedicineTreatment(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
-    date_of_diagnosis = models.DateField(auto_now_add=True)
+    date_of_diagnosis = models.DateField(default=timezone.now())
     name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
-    date_of_medication = models.DateField(auto_now_add=True)
+    date_of_medication = models.DateField(default=timezone.now())
     STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
     current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
     SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
@@ -86,13 +86,17 @@ class MedicineTreatment(models.Model):
         null=True,
         help_text="Select only if animal is cured.",
     )
+
+    def __str__(self):
+        return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet}"
 
 
 class DosageTreatment(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
-    date_of_diagnosis = models.DateField(auto_now_add=True)
+    date_of_diagnosis = models.DateField(default=timezone.now())
     name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
-    date_of_medication = models.DateField(auto_now_add=True)
+    dosage_treatment_used = models.CharField(max_length=50, validators=[MinLengthValidator(2)], default="Not specified")
+    date_of_medication = models.DateField(default=timezone.now())
     STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
     current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
     SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
@@ -101,9 +105,7 @@ class DosageTreatment(models.Model):
         choices=SOLD_CHOICES,
         blank=True,
         null=True,
-        help_text="Select only if animal is cured.",
     )
-    dosage_treatment_used = models.CharField(max_length=100, default="Not specified")
 
     def __str__(self):
-        return f"{self.animal_name} - {self.current_state}"
+        return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet}" - {self.dosage_treatment_used}
