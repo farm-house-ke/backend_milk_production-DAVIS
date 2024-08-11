@@ -73,9 +73,9 @@ class AInonPredeterminedServicedAnimal(AnimalBase):
 
 class MedicineTreatment(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
-    date_of_diagnosis = models.DateField(default=timezone.now())
+    date_of_diagnosis = models.DateField(default=timezone.now().date())
     name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
-    date_of_medication = models.DateField(default=timezone.now())
+    date_of_medication = models.DateField(default=timezone.now().date())
     STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
     current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
     SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
@@ -93,10 +93,12 @@ class MedicineTreatment(models.Model):
 
 class DosageTreatment(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
-    date_of_diagnosis = models.DateField(default=timezone.now())
+    date_of_diagnosis = models.DateField(default=timezone.now().date())
     name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
-    dosage_treatment_used = models.CharField(max_length=50, validators=[MinLengthValidator(2)], default="Not specified")
-    date_of_medication = models.DateField(default=timezone.now())
+    dosage_treatment_used = models.CharField(
+        max_length=50, validators=[MinLengthValidator(2)], default="Not specified"
+    )
+    date_of_medication = models.DateField()
     STATE_CHOICES = (("cured", "Cured"), ("dead", "Dead"))
     current_state = models.CharField(max_length=50, choices=STATE_CHOICES)
     SOLD_CHOICES = (("sold", "Sold"), ("not_sold", "Not Sold"))
@@ -108,4 +110,4 @@ class DosageTreatment(models.Model):
     )
 
     def __str__(self):
-        return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet}" - {self.dosage_treatment_used}
+        return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet} - {self.dosage_treatment_used}"
