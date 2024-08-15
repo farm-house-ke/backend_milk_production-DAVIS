@@ -1,6 +1,6 @@
 """views for user model."""
-
-from django.contrib.auth import login, logout as django_logout, get_user_model
+from .serializers import UserSignUpSerializer, UserLoginSerializer
+from django.contrib.auth import login, get_user_model
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -8,7 +8,6 @@ from rest_framework.decorators import action
 from django.core.cache import cache
 
 User = get_user_model()
-from .serializers import UserSignUpSerializer, UserLoginSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -1,7 +1,5 @@
 """views for serializer models."""
 
-from django.http import JsonResponse
-from django.db import models
 from rest_framework.views import APIView
 from django.db.models import Count
 from rest_framework.response import Response
