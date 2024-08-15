@@ -1,4 +1,5 @@
 """views for user model."""
+
 from .serializers import UserSignUpSerializer, UserLoginSerializer
 from django.contrib.auth import login, get_user_model
 from rest_framework import viewsets, status
