@@ -3,13 +3,14 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
+    GenderDistributionView,
     PurchasedViewSet,
     LocallyServicedViewSet,
     AIPredeterminedViewSet,
     AInonPredeterminedViewSet,
     MedicineTreatmentViewSet,
     AnimalBaseViewSet,
-    DosageTreatmentViewSet
+    DosageTreatmentViewSet,
 )
 
 router = DefaultRouter()
@@ -23,6 +24,8 @@ router.register(r"ai_predetermined_service_animal", AIPredeterminedViewSet)
 router.register(r"dosage", DosageTreatmentViewSet)
 router.register(r"medicine", MedicineTreatmentViewSet)
 
+
 urlpatterns = [
     path("", include(router.urls)),
+    path("gender-distribution/", GenderDistributionView.as_view(), name="gender_distribution"),
 ]
