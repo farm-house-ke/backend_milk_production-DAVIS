@@ -8,7 +8,7 @@ router.register(r"register", UserViewSet, basename="register")
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("logout/", LogoutView.as_view(), name="logout"),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("logout/", LogoutView.as_view(), name="auth_logout"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
