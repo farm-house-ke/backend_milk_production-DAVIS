@@ -33,7 +33,7 @@ class PurchasedAnimal(AnimalBase):
 
     seller_name = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     date_purchased = models.DateField(default=timezone.now())
-    
+
     class Meta:
         verbose_name = "purchased"
 
@@ -48,8 +48,10 @@ class LocallyServicedAnimal(AnimalBase):
     class Meta:
         verbose_name = "locally_serviced"
 
+
 class AIPredeterminedServiceAnimal(AnimalBase):
     """Model for AI predetermined serviced animals."""
+
     ai_gender = models.CharField(max_length=1, default="F", editable=False)
     date_of_service = models.DateField(
         default=timezone.now(),
@@ -58,6 +60,7 @@ class AIPredeterminedServiceAnimal(AnimalBase):
 
     class Meta:
         verbose_name = "ai_predetermined"
+
 
 class AInonPredeterminedServicedAnimal(AnimalBase):
     """Model for AI non predetermined serviced animals."""

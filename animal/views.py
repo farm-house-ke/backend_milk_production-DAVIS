@@ -1,4 +1,5 @@
 """views for serializer models."""
+
 from django.http import JsonResponse
 from django.db import models
 from rest_framework.views import APIView
@@ -55,6 +56,7 @@ class MedicineTreatmentViewSet(viewsets.ModelViewSet):
 class DosageTreatmentViewSet(viewsets.ModelViewSet):
     queryset = DosageTreatment.objects.all()
     serializer_class = DosageTreatmentSerializer
+
 
 class AnimalBaseViewSet(viewsets.ModelViewSet):
     queryset = AnimalBase.objects.all()
