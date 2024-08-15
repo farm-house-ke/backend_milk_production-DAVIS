@@ -3,7 +3,6 @@
 from django.contrib.auth import login, logout as django_logout, get_user_model
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import action
 from django.core.cache import cache
@@ -46,4 +45,3 @@ class UserViewSet(viewsets.ModelViewSet):
             },
             status=status.HTTP_200_OK,
         )
-
