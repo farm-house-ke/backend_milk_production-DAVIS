@@ -78,8 +78,6 @@ ROOT_URLCONF = "config.urls"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:8000",
-    "http://192.168.0.121:5173",
-    "http://192.168.0.121:8000",
 ]
 
 COR_ALLOW_HEADERS = list(default_headers) + [
