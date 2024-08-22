@@ -1,5 +1,5 @@
 """views for user model."""
-
+from django_ratelimit.decorators import ratelimit
 from .serializers import UserSignUpSerializer, UserLoginSerializer
 from django.contrib.auth import login, get_user_model
 from rest_framework import viewsets, status
@@ -14,7 +14,7 @@ User = get_user_model()
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSignUpSerializer
-
+    @ratelimit(key="ip", rate="5/m", method="POST", block=True)
     @action(detail=False, methods=["post"], serializer_class=UserLoginSerializer)
     def login(self, request):
         """Login user."""
@@ -28,7 +28,7 @@ class UserViewSet(viewsets.ModelViewSet):
             )
 
         login_attempts = cache.get(f"login_attempts_{user.id}", 0)
-        if login_attempts > 7:
+        if login_attempts > 5:
             return Response(
                 {"details": "Account failed due to many logins"},
                 status=status.HTTP_403_FORBIDDEN,
