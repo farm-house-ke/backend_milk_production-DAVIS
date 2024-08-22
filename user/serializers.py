@@ -1,7 +1,9 @@
 """serializer for user model."""
 
 from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
+from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
@@ -15,9 +17,21 @@ class UserSignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "email", "username", "password"]
+    
+    
+    def validate_password(self, value):
+        try:
+            validate_password(value)
+        except ValidationError as e:
+            raise serializers.ValidationError(str(e))
+        return value    
+    
 
     def create(self, validated_data):
         """create user."""
+        
+        self.validate_password(validated_data["password"])
+        
         user = User.objects.create_user(
             email=validated_data["email"],
             username=validated_data["username"],
