@@ -1,4 +1,5 @@
 """views for user model."""
+
 from django_ratelimit.decorators import ratelimit
 from .serializers import UserSignUpSerializer, UserLoginSerializer
 from django.contrib.auth import login, get_user_model
@@ -14,7 +15,8 @@ User = get_user_model()
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSignUpSerializer
-    @ratelimit(key="ip", rate="5/m", method="POST", block=True)
+
+    @ratelimit(key="ip", rate="5/m", block=True)
     @action(detail=False, methods=["post"], serializer_class=UserLoginSerializer)
     def login(self, request):
         """Login user."""
