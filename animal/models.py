@@ -31,6 +31,8 @@ class AnimalBase(models.Model):
 class PurchasedAnimal(AnimalBase):
     """Model for purchased animals"""
 
+    date_of_birth = models.DateField(default=timezone.now())
+    expected_maturity_date = models.DateField(default=timezone.now())
     seller_name = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     date_purchased = models.DateField(default=timezone.now())
 
@@ -41,9 +43,10 @@ class PurchasedAnimal(AnimalBase):
 class LocallyServicedAnimal(AnimalBase):
     """Model for locally serviced animals"""
 
+    birth_date = models.DateField(default=timezone.now())
+    expected_maturity_date = models.DateField(default=timezone.now())
     name_of_owner = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     date_of_service = models.DateField(default=timezone.now())
-    birth_date = models.DateField(default=timezone.now())
 
     class Meta:
         verbose_name = "locally_serviced"
@@ -52,11 +55,11 @@ class LocallyServicedAnimal(AnimalBase):
 class AIPredeterminedServiceAnimal(AnimalBase):
     """Model for AI predetermined serviced animals."""
 
-    ai_gender = models.CharField(max_length=1, default="F", editable=False)
+    birth_date = models.DateField(default=timezone.now())
+    expected_maturity_date = models.DateField(default=timezone.now())
     date_of_service = models.DateField(
         default=timezone.now(),
     )
-    birth_date = models.DateField(default=timezone.now())
 
     class Meta:
         verbose_name = "ai_predetermined"
@@ -65,10 +68,11 @@ class AIPredeterminedServiceAnimal(AnimalBase):
 class AInonPredeterminedServicedAnimal(AnimalBase):
     """Model for AI non predetermined serviced animals."""
 
+    birth_date = models.DateField(default=timezone.now())
+    expected_maturity_date = models.DateField(default=timezone.now())
     date_of_service = models.DateField(
         default=timezone.now(),
     )
-    birth_date = models.DateField(default=timezone.now())
 
     class Meta:
         verbose_name = "ai_non_predetermined"
@@ -76,6 +80,7 @@ class AInonPredeterminedServicedAnimal(AnimalBase):
 
 class MedicineTreatment(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
+    diagnosis_description = models.TextField(default="Not specified")
     date_of_diagnosis = models.DateField(default=timezone.now().date())
     name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     date_of_medication = models.DateField(default=timezone.now().date())
@@ -89,13 +94,24 @@ class MedicineTreatment(models.Model):
         null=True,
         help_text="Select only if animal is cured.",
     )
+    date_sold = models.DateField(
+        blank=True, null=True, help_text="Only applicable if animal is sold."
+    )
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        blank=True,
+        null=True,
+        help_text="Only applicable if animal is sold.",
+    )
 
     def __str__(self):
-        return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet}"
+        return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet} - {self.diagnosis_description}"
 
 
 class DosageTreatment(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
+    diagnosis_description = models.TextField(default="Not specified")
     date_of_diagnosis = models.DateField(default=timezone.now().date())
     name_of_vet = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     dosage_treatment_used = models.CharField(
@@ -110,6 +126,16 @@ class DosageTreatment(models.Model):
         choices=SOLD_CHOICES,
         blank=True,
         null=True,
+    )
+    date_sold = models.DateField(
+        blank=True, null=True, help_text="Only applicable if animal is sold."
+    )
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        blank=True,
+        null=True,
+        help_text="Only applicable if animal is sold.",
     )
 
     def __str__(self):
