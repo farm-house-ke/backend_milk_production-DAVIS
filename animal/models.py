@@ -46,7 +46,6 @@ class LocallyServicedAnimal(AnimalBase):
     birth_date = models.DateField(default=timezone.now())
     expected_maturity_date = models.DateField(default=timezone.now())
     name_of_owner = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
-    date_of_service = models.DateField(default=timezone.now())
 
     class Meta:
         verbose_name = "locally_serviced"
@@ -57,10 +56,6 @@ class AIPredeterminedServiceAnimal(AnimalBase):
 
     birth_date = models.DateField(default=timezone.now())
     expected_maturity_date = models.DateField(default=timezone.now())
-    date_of_service = models.DateField(
-        default=timezone.now(),
-    )
-
     class Meta:
         verbose_name = "ai_predetermined"
 
@@ -70,10 +65,6 @@ class AInonPredeterminedServicedAnimal(AnimalBase):
 
     birth_date = models.DateField(default=timezone.now())
     expected_maturity_date = models.DateField(default=timezone.now())
-    date_of_service = models.DateField(
-        default=timezone.now(),
-    )
-
     class Meta:
         verbose_name = "ai_non_predetermined"
 
