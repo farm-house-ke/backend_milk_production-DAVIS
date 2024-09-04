@@ -12,9 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from corsheaders.defaults import default_headers
-from datetime import timedelta
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,20 +27,8 @@ SECRET_KEY = "django-insecure-r(u7ze9_f3z4r)m-g=enc5ori^q*e3k-@2d*_j*07143o6m#vt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "192.168.100.129"]
 
-
-# Application definition
-
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379/1",
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         },
-#     }
-# }
 
 
 INSTALLED_APPS = [
@@ -98,7 +84,7 @@ SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 
 # CSRF trusted origins
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000"]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", "http://192.168.100.129:5173", "http://0.0.0.0:8000"]
 
 # Ensure HTTPS is used in production
 SECURE_SSL_REDIRECT = False  # Set to True in production
@@ -109,8 +95,8 @@ SECURE_HSTS_PRELOAD = False  # Set to True in production
 ROOT_URLCONF = "config.urls"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:8000",
+    "http://192.168.100.129:5173",
+    "http://192.168.100.129:8000",
 ]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
@@ -164,11 +150,6 @@ DATABASES = {
         "NAME": BASE_DIR / "backend.sqlite3",
     }
 }
-# DATABASES = {
-#     "default": dj_database_url.config(
-#         default=f"postgres://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
-#     )
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
