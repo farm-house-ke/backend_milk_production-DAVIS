@@ -12,6 +12,7 @@ class AnimalBase(models.Model):
     image = models.ImageField(
         upload_to="static/", blank=False, default="static/default.jpg"
     )
+    weight = models.FloatField(default=0.0)
     breed = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     gender = models.CharField(max_length=1, choices=[("M", "male"), ("F", "female")])
     date_of_next_service = models.DateField(
@@ -19,6 +20,20 @@ class AnimalBase(models.Model):
         blank=True,
         help_text="Only applicable for female",
         default=timezone.now,
+    )
+    daughter_of = models.CharField(
+        max_length=50,
+        validators=[MinLengthValidator(2)],
+        null=True,
+        blank=True,
+        help_text="Only applicable if gender is female",
+    )
+    son_of = models.CharField(
+        max_length=50,
+        validators=[MinLengthValidator(2)],
+        null=True,
+        blank=True,
+        help_text="Only applicable if gender is male",
     )
 
     class Meta:
@@ -34,6 +49,7 @@ class PurchasedAnimal(AnimalBase):
     date_of_birth = models.DateField(default=timezone.now())
     expected_maturity_date = models.DateField(default=timezone.now())
     seller_name = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    price_bought = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     date_purchased = models.DateField(default=timezone.now())
 
     class Meta:
@@ -45,29 +61,13 @@ class LocallyServicedAnimal(AnimalBase):
 
     birth_date = models.DateField(default=timezone.now())
     expected_maturity_date = models.DateField(default=timezone.now())
+    bull = models.CharField(
+        max_length=50, validators=[MinLengthValidator(2)], default="Not specified"
+    )
     name_of_owner = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
 
     class Meta:
         verbose_name = "locally_serviced"
-
-
-class AIPredeterminedServiceAnimal(AnimalBase):
-    """Model for AI predetermined serviced animals."""
-
-    birth_date = models.DateField(default=timezone.now())
-    expected_maturity_date = models.DateField(default=timezone.now())
-    class Meta:
-        verbose_name = "ai_predetermined"
-
-
-class AInonPredeterminedServicedAnimal(AnimalBase):
-    """Model for AI non predetermined serviced animals."""
-
-    birth_date = models.DateField(default=timezone.now())
-    expected_maturity_date = models.DateField(default=timezone.now())
-    class Meta:
-        verbose_name = "ai_non_predetermined"
-
 
 class MedicineTreatment(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
@@ -131,3 +131,63 @@ class DosageTreatment(models.Model):
 
     def __str__(self):
         return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet} - {self.dosage_treatment_used}"
+
+
+# class Servicing(models.Model):
+#     """Model for servicing animals."""
+#     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
+#     date_presented = models.DateField(default=timezone.now())
+#     date_served = models.DateField(default=timezone.now())
+#     bull = models.CharField(
+#         max_length=50, validators=[MinLengthValidator(2)], default="Not specified"
+#     )
+#     owner_of_bull = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+#     SEX_CHOICES = (("Predetermined", "Predetermined"), ("Normal", "Normal"))
+#     sex = models.CharField(max_length=50, choices=SEX_CHOICES, blank=True, null=True)
+#     expected_date_of_calving = models.DateField(default=timezone.now())
+#     servicing_status = models.CharField(
+#         max_length=50,
+#         choices=[("Successfull", "successful"), ("Aborted", "aborted")],
+#         default="Select the status",
+#     )
+
+#     class Meta:
+#         verbose_name = "servicing"
+
+#     def __str__(self):
+#         return f"{self.animal_name} - {self.bull} - {self.date_served} - {self.owner_of_bull} - {self.expected_date_of_calving}"
+
+
+class Disposal(models.Model):
+    animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
+    date_of_disposal = models.DateField(default=timezone.now())
+    remark = models.TextField(default="Not specified")
+
+    def __str__(self):
+        return f"{self.animal_name} - {self.date_of_disposal} - {self.remark}"
+
+
+# class MilkProduction(models.Model):
+#     animal = models.ForeignKey(
+#         AnimalBase, on_delete=models.CASCADE, related_name="milk_productions"
+#     )
+#     date_of_production = models.DateField(default=timezone.now)
+#     morning_quantity = models.FloatField(
+#         default=0.0, help_text="Quantity of milk in liters for the morning session"
+#     )
+#     evening_quantity = models.FloatField(
+#         default=0.0, help_text="Quantity of milk in liters for the evening session"
+#     )
+
+#     @property
+#     def total_daily_quantity(self):
+#         return self.morning_quantity + self.evening_quantity
+
+#     def __str__(self):
+#         return f"{self.animal.name} - {self.date_of_production} - {self.total_daily_quantity} L"
+
+#     class Meta:
+#         unique_together = (
+#             "animal",
+#             "date_of_production",
+#         )

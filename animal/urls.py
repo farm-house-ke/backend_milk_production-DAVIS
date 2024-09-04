@@ -6,21 +6,22 @@ from .views import (
     GenderDistributionView,
     PurchasedViewSet,
     LocallyServicedViewSet,
-    AIPredeterminedViewSet,
-    AInonPredeterminedViewSet,
     MedicineTreatmentViewSet,
     AnimalBaseViewSet,
     DosageTreatmentViewSet,
+    # ServicingViewSet,
+    DisposalViewSet,
 )
 
 router = DefaultRouter()
 router.register(r"animal_base", AnimalBaseViewSet)
+# router.register(r"servicing", ServicingViewSet)
 router.register(r"purchased_animal", PurchasedViewSet)
 router.register(r"locally_serviced_animal", LocallyServicedViewSet)
-router.register(r"ai_non_predetermined_service_animal", AInonPredeterminedViewSet)
-router.register(r"ai_predetermined_service_animal", AIPredeterminedViewSet)
 router.register(r"dosage", DosageTreatmentViewSet)
 router.register(r"medicine", MedicineTreatmentViewSet)
+router.register(r"disposal", DisposalViewSet)
+# router.register(r"milk_production", MilkProductionView, basename="milk_production")
 
 
 urlpatterns = [
