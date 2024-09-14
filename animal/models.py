@@ -132,32 +132,6 @@ class DosageTreatment(models.Model):
     def __str__(self):
         return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet} - {self.dosage_treatment_used}"
 
-
-# class Servicing(models.Model):
-#     """Model for servicing animals."""
-#     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
-#     date_presented = models.DateField(default=timezone.now())
-#     date_served = models.DateField(default=timezone.now())
-#     bull = models.CharField(
-#         max_length=50, validators=[MinLengthValidator(2)], default="Not specified"
-#     )
-#     owner_of_bull = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
-#     SEX_CHOICES = (("Predetermined", "Predetermined"), ("Normal", "Normal"))
-#     sex = models.CharField(max_length=50, choices=SEX_CHOICES, blank=True, null=True)
-#     expected_date_of_calving = models.DateField(default=timezone.now())
-#     servicing_status = models.CharField(
-#         max_length=50,
-#         choices=[("Successfull", "successful"), ("Aborted", "aborted")],
-#         default="Select the status",
-#     )
-
-#     class Meta:
-#         verbose_name = "servicing"
-
-#     def __str__(self):
-#         return f"{self.animal_name} - {self.bull} - {self.date_served} - {self.owner_of_bull} - {self.expected_date_of_calving}"
-
-
 class Disposal(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
     date_of_disposal = models.DateField(default=timezone.now())
