@@ -35,7 +35,7 @@ eggs/
 .eggs/
 lib/
 lib64/
-static/
+# static/
 parts/
 sdist/
 var/
