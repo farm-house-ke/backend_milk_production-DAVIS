@@ -69,6 +69,7 @@ class LocallyServicedAnimal(AnimalBase):
     class Meta:
         verbose_name = "locally_serviced"
 
+
 class MedicineTreatment(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
     diagnosis_description = models.TextField(default="Not specified")
@@ -131,6 +132,7 @@ class DosageTreatment(models.Model):
 
     def __str__(self):
         return f"{self.animal_name} - {self.current_state} - {self.sold_status} - {self.date_of_medication} - {self.date_of_diagnosis} - {self.name_of_vet} - {self.dosage_treatment_used}"
+
 
 class Disposal(models.Model):
     animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
