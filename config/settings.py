@@ -29,10 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "0.0.0.0",
-    "192.168.1.109",
     "192.168.1.115",
-    "192.168.88.49",
+    "192.168.88.69",
 ]
 
 
@@ -92,7 +90,7 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://192.168.1.109:8000",
-    "http://192.168.88.49:8000",
+    "http://192.168.88.69:8000",
     "http://192.168.1.115:8000",
 ]
 
@@ -104,7 +102,7 @@ SECURE_HSTS_PRELOAD = False  # Set to True in production
 
 ROOT_URLCONF = "config.urls"
 
-CORS_ALLOWED_ORIGINS = ["http://192.168.1.109:5173", "http://192.168.88.49:5173"]
+CORS_ALLOWED_ORIGINS = ["http://192.168.1.109:5173", "http://192.168.88.69:5173"]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "Authorization",
