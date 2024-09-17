@@ -141,29 +141,3 @@ class Disposal(models.Model):
 
     def __str__(self):
         return f"{self.animal_name} - {self.date_of_disposal} - {self.remark}"
-
-
-# class MilkProduction(models.Model):
-#     animal = models.ForeignKey(
-#         AnimalBase, on_delete=models.CASCADE, related_name="milk_productions"
-#     )
-#     date_of_production = models.DateField(default=timezone.now)
-#     morning_quantity = models.FloatField(
-#         default=0.0, help_text="Quantity of milk in liters for the morning session"
-#     )
-#     evening_quantity = models.FloatField(
-#         default=0.0, help_text="Quantity of milk in liters for the evening session"
-#     )
-
-#     @property
-#     def total_daily_quantity(self):
-#         return self.morning_quantity + self.evening_quantity
-
-#     def __str__(self):
-#         return f"{self.animal.name} - {self.date_of_production} - {self.total_daily_quantity} L"
-
-#     class Meta:
-#         unique_together = (
-#             "animal",
-#             "date_of_production",
-#         )

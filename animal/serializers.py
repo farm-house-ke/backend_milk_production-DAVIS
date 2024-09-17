@@ -51,11 +51,3 @@ class DisposalSerializer(serializers.ModelSerializer):
         model = Disposal
         fields = "__all__"
 
-
-# class MilkProductionSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = MilkProduction
-#         fields = "__all__"
-
-#     def get_total_daily_quantity(self, obj):
-#         return obj.morning_quantity + obj.evening_quantity
