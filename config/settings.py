@@ -30,6 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "192.168.1.115",
+    "192.168.1.109",
     "192.168.88.69",
 ]
 
@@ -88,7 +89,6 @@ CSRF_COOKIE_HTTPONLY = True
 
 # CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8000",
     "http://192.168.1.109:8000",
     "http://192.168.88.69:8000",
     "http://192.168.1.115:8000",
