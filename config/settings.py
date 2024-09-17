@@ -27,8 +27,13 @@ SECRET_KEY = "django-insecure-r(u7ze9_f3z4r)m-g=enc5ori^q*e3k-@2d*_j*07143o6m#vt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "192.168.1.109"]
-
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "0.0.0.0",
+    "192.168.1.109",
+    "192.168.1.115",
+    "192.168.88.49",
+]
 
 
 INSTALLED_APPS = [
@@ -84,7 +89,12 @@ SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 
 # CSRF trusted origins
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", "http://192.168.1.109:8000", "http://0.0.0.0:8000"]
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://192.168.1.109:8000",
+    "http://192.168.88.49:8000",
+    "http://192.168.1.115:8000",
+]
 
 # Ensure HTTPS is used in production
 SECURE_SSL_REDIRECT = False  # Set to True in production
@@ -94,9 +104,7 @@ SECURE_HSTS_PRELOAD = False  # Set to True in production
 
 ROOT_URLCONF = "config.urls"
 
-CORS_ALLOWED_ORIGINS = [
-    "http://192.168.1.109:5173",
-]
+CORS_ALLOWED_ORIGINS = ["http://192.168.1.109:5173", "http://192.168.88.49:5173"]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "Authorization",
