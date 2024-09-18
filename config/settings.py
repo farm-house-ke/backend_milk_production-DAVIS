@@ -100,7 +100,6 @@ SECURE_HSTS_SECONDS = 0  # Set to a positive integer in production
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False  # Set to True in production
 SECURE_HSTS_PRELOAD = False  # Set to True in production
 
-ROOT_URLCONF = "config.urls"
 
 CORS_ALLOWED_ORIGINS = ["http://192.168.1.109:5173", "http://192.168.88.69:5173"]
 
@@ -114,6 +113,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     "cache-control",
     "x-csrftoken",
     "x-frame-options",
+    "pragma",
 ]
 
 CORS_ALLOW_METHODS = [
