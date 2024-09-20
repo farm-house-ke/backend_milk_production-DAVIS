@@ -5,9 +5,26 @@ from .models import (
     MedicineTreatment,
     DosageTreatment,
     AnimalBase,
-    # Servicing,
     Disposal,
+    ServingBase,
+    Bull,
+    ArtificialInsemination,
 )
+
+class ServingBaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServingBase
+        fields = "__all__"
+
+class BullServingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bull
+        fields = "__all__"
+
+class AISerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ArtificialInsemination
+        fields = "__all__"
 
 
 class AnimalBaseSerializer(serializers.ModelSerializer):
@@ -15,11 +32,6 @@ class AnimalBaseSerializer(serializers.ModelSerializer):
         model = AnimalBase
         fields = "__all__"
 
-
-# class ServicingSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Servicing
-#         fields = "__all__"
 
 
 class PurchasedAnimalSerializer(serializers.ModelSerializer):
@@ -50,4 +62,3 @@ class DisposalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Disposal
         fields = "__all__"
-

@@ -141,3 +141,44 @@ class Disposal(models.Model):
 
     def __str__(self):
         return f"{self.animal_name} - {self.date_of_disposal} - {self.remark}"
+
+
+class ServingBase(models.Model):
+    """Base model for all serving models"""
+    animal_name = models.ForeignKey(AnimalBase, on_delete=models.CASCADE)
+    date_presented = models.DateField(default=timezone.now())
+    STATUS_CHOICES = (("confirmed", "Confirmed"), ("aborted", "Aborted"))
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES)
+    expected_date_of_delivery = models.DateField(
+        blank=True,
+        null=True,
+        help_text="Only applicable if status is confirmed.",
+        default=timezone.now(),
+    )
+
+    def __str__(self):
+        return f"{self.animal_name} - {self.date_presented}"
+
+
+class Bull(ServingBase):
+    """Model for bull serving"""
+
+    name_of_bull = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    owner_of_bull = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+
+    class Meta:
+        verbose_name = "bull"
+
+
+class ArtificialInsemination(ServingBase):
+    """Model for artificial insemination"""
+
+    vet_officer_name = models.CharField(
+        max_length=50, validators=[MinLengthValidator(2)]
+    )
+    vet_number = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
+    OVA_CHOICES = (("predetermined", "Predetermined"), ("normal", "Normal"))
+    ova = models.CharField(max_length=50, choices=OVA_CHOICES)
+
+    class Meta:
+        verbose_name = "artificial_insemination"

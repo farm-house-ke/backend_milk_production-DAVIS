@@ -10,6 +10,9 @@ from .views import (
     AnimalBaseViewSet,
     DosageTreatmentViewSet,
     DisposalViewSet,
+    ServingBaseViewSet,
+    BullViewSet,
+    AIViewSet,
 )
 
 router = DefaultRouter()
@@ -19,6 +22,9 @@ router.register(r"locally_serviced_animal", LocallyServicedViewSet)
 router.register(r"dosage", DosageTreatmentViewSet)
 router.register(r"medicine", MedicineTreatmentViewSet)
 router.register(r"disposal", DisposalViewSet)
+router.register(r"serving", ServingBaseViewSet)
+router.register(r"bull", BullViewSet)
+router.register(r"ai", AIViewSet)
 
 
 urlpatterns = [
