@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("animal", "0001_initial"),
+        ("animal", "0002_alter_disposal_date_of_disposal_and_more"),
     ]
 
     operations = [
@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name="date_of_disposal",
             field=models.DateField(
                 default=datetime.datetime(
-                    2024, 9, 24, 23, 57, 12, 842185, tzinfo=datetime.timezone.utc
+                    2024, 9, 24, 23, 57, 27, 955372, tzinfo=datetime.timezone.utc
                 )
             ),
         ),
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
             name="birth_date",
             field=models.DateField(
                 default=datetime.datetime(
-                    2024, 9, 24, 23, 57, 12, 840976, tzinfo=datetime.timezone.utc
+                    2024, 9, 24, 23, 57, 27, 954202, tzinfo=datetime.timezone.utc
                 )
             ),
         ),
@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
             name="expected_maturity_date",
             field=models.DateField(
                 default=datetime.datetime(
-                    2024, 9, 24, 23, 57, 12, 840991, tzinfo=datetime.timezone.utc
+                    2024, 9, 24, 23, 57, 27, 954217, tzinfo=datetime.timezone.utc
                 )
             ),
         ),
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
             name="date_of_birth",
             field=models.DateField(
                 default=datetime.datetime(
-                    2024, 9, 24, 23, 57, 12, 840631, tzinfo=datetime.timezone.utc
+                    2024, 9, 24, 23, 57, 27, 953834, tzinfo=datetime.timezone.utc
                 )
             ),
         ),
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
             name="date_purchased",
             field=models.DateField(
                 default=datetime.datetime(
-                    2024, 9, 24, 23, 57, 12, 840686, tzinfo=datetime.timezone.utc
+                    2024, 9, 24, 23, 57, 27, 953889, tzinfo=datetime.timezone.utc
                 )
             ),
         ),
@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
             name="expected_maturity_date",
             field=models.DateField(
                 default=datetime.datetime(
-                    2024, 9, 24, 23, 57, 12, 840650, tzinfo=datetime.timezone.utc
+                    2024, 9, 24, 23, 57, 27, 953853, tzinfo=datetime.timezone.utc
                 )
             ),
         ),
@@ -70,7 +70,7 @@ class Migration(migrations.Migration):
             name="date_presented",
             field=models.DateField(
                 default=datetime.datetime(
-                    2024, 9, 24, 23, 57, 12, 842491, tzinfo=datetime.timezone.utc
+                    2024, 9, 24, 23, 57, 27, 955642, tzinfo=datetime.timezone.utc
                 )
             ),
         ),
@@ -80,7 +80,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 default=datetime.datetime(
-                    2024, 9, 24, 23, 57, 12, 842522, tzinfo=datetime.timezone.utc
+                    2024, 9, 24, 23, 57, 27, 955672, tzinfo=datetime.timezone.utc
                 ),
                 help_text="Only applicable if status is confirmed.",
                 null=True,
