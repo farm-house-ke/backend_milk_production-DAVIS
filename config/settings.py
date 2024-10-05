@@ -27,13 +27,7 @@ SECRET_KEY = "django-insecure-r(u7ze9_f3z4r)m-g=enc5ori^q*e3k-@2d*_j*07143o6m#vt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "192.168.1.115",
-    "192.168.1.104",
-    "192.168.27.21",
-]
+ALLOWED_HOSTS = ["192.168.1.121", "127.0.0.1"]
 
 
 INSTALLED_APPS = [
@@ -82,27 +76,7 @@ LOGGING = {
 
 
 ROOT_URLCONF = "config.urls"
-# CSRF and Session settings for development
-SESSION_COOKIE_SECURE = False  # Set to True in production
-CSRF_COOKIE_SECURE = False  # Set to True in production
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_HTTPONLY = True
-
-# CSRF trusted origins
-CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8000",
-    "http://192.168.17.22:8000",
-    "http://192.168.1.115:8000",
-]
-
-# Ensure HTTPS is used in production
-SECURE_SSL_REDIRECT = False  # Set to True in production
-SECURE_HSTS_SECONDS = 0  # Set to a positive integer in production
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False  # Set to True in production
-SECURE_HSTS_PRELOAD = False  # Set to True in production
-
-
-CORS_ALLOWED_ORIGINS = ["http://localhodst:5173", "http://192.168.27.21:5173"]
+CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:8000", "http://192.168.1.121:8000", "http://localhost:5173", "http://192.168.1.121:5173"]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "Authorization",
@@ -116,6 +90,11 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     "x-frame-options",
     "pragma",
 ]
+
+X_FRAME_OPTIONS = "ALLOWALL"
+
+CSP_FRAME_ANCESTORS = ["'self'", "http://127.0.0.1:8000"]
+
 
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -153,7 +132,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "backend.sqlite3",
+        "NAME": BASE_DIR / "milk_production.sqlite3",
     }
 }
 
