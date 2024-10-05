@@ -8,7 +8,7 @@
 __pycache__/
 __init__.py
 local_settings.py
-backend.sqlite3
+milk_production.sqlite3
 db.sqlite3-journal
 media
 
