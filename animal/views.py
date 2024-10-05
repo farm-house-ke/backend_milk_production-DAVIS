@@ -3,9 +3,6 @@
 from rest_framework.views import APIView
 from django.db.models import Count
 from rest_framework.response import Response
-
-# from datetime import timedelta, timezone
-# from collections import defaultdict
 from rest_framework import status
 
 from rest_framework import viewsets
