@@ -181,3 +181,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+JAZZMIN_SETTINGS ={
+    'site_header':"KIRUGI MILK FARM",
+    'site_brand':"KIRUGI MILK FARM",
+    'site_logo':"assets/logo.png",
+    "login_logo": None,
+    "site_logo_classes": "img-circle",
+    "welcome_sign": "Welcome to the Admin Panel",
+    'copyright':"https://github.com/Mamba1099",
+}
