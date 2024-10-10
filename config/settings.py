@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["192.168.1.121", "127.0.0.1"]
 
 
 INSTALLED_APPS = [
+    "jazzmin",   
     "django.contrib.auth",
     "django.contrib.admin",
     "django.contrib.contenttypes",
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     "user_api",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
+    
 ]
 
 REST_FRAMEWORK = {
@@ -160,7 +162,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Africa/Nairobi"
 
 USE_I18N = True
 
