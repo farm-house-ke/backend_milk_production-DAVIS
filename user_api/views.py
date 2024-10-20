@@ -4,7 +4,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import login
-from .serializers import UserSignUpSerializer, UserLoginSerializer
+from .serializers import UserSignUpSerializer, UserLoginSerializer,UserProfileSerializer
+from rest_framework.views import APIView
+from .models import Profile
 
 logger = logging.getLogger(__name__)
 
@@ -47,3 +49,11 @@ class UserViewSet(viewsets.ViewSet):
             )
         logger.error(f"Login error: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ProfileImageUploadView(APIView):
+    def post(self,request,*args,**kwargs):
+        profile=Profile.objects.get(user=request.user)
+        profile.profile_image=request.FILES.get('profile_image')
+        profile.save()
+        return Response({'message':'profile image uploaded successfully'},status=status.HTTP_200_OK)
+    
