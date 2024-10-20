@@ -50,6 +50,7 @@ class UserViewSet(viewsets.ViewSet):
         logger.error(f"Login error: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#profile image upload view
 class ProfileImageUploadView(APIView):
     def post(self,request,*args,**kwargs):
         profile=Profile.objects.get(user=request.user)
