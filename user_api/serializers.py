@@ -2,7 +2,10 @@ from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
+<<<<<<< HEAD
 from .models import Profile
+=======
+>>>>>>> 28003f5fd2e9db1febc66726152e4fdbecdb0168
 
 User = get_user_model()
 
@@ -48,9 +51,12 @@ class UserLoginSerializer(serializers.Serializer):
                 "refresh_token": str(refresh),
             }
         raise serializers.ValidationError("Invalid credentials")
+<<<<<<< HEAD
 
 #user profile serializer
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=Profile
         fields=['profile_image']
+=======
+>>>>>>> 28003f5fd2e9db1febc66726152e4fdbecdb0168
