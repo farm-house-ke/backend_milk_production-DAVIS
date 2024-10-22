@@ -4,7 +4,6 @@ from .models import (
     LocallyServicedAnimal,
     MedicineTreatment,
     DosageTreatment,
-    ProductionBase,
     AnimalBase,
     Disposal,
     ServingBase,
