@@ -30,6 +30,7 @@ build/
 develop-eggs/
 dist/
 downloads/
+profile_images/
 migrations/
 eggs/
 .eggs/
