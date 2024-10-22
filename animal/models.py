@@ -55,11 +55,7 @@ class PurchasedAnimal(AnimalBase):
     date_purchased = models.DateField(default=timezone.now())
 
     class Meta:
-<<<<<<< HEAD
         verbose_name_plural = "Purchases"
-=======
-        verbose_name = "purchased"
->>>>>>> 28003f5fd2e9db1febc66726152e4fdbecdb0168
 
 
 class LocallyServicedAnimal(AnimalBase):
@@ -73,11 +69,7 @@ class LocallyServicedAnimal(AnimalBase):
     name_of_owner = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
 
     class Meta:
-<<<<<<< HEAD
         verbose_name_plural= "local services"
-=======
-        verbose_name = "locally_serviced"
->>>>>>> 28003f5fd2e9db1febc66726152e4fdbecdb0168
 
 
 class MedicineTreatment(models.Model):
