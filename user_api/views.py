@@ -44,6 +44,7 @@ class UserViewSet(viewsets.ViewSet):
                     "access_token": serializer.validated_data["access_token"],
                     "refresh_token": serializer.validated_data["refresh_token"],
                     "username": serializer.validated_data["user"].username,
+                    "profile_image": serializer.validated_data["user"].profile_image,
                 },
                 status=status.HTTP_200_OK,
             )
