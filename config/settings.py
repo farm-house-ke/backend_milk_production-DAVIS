@@ -77,7 +77,12 @@ LOGGING = {
 
 
 ROOT_URLCONF = "config.urls"
-CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:8000", "http://192.168.1.121:8000", "http://localhost:5173", "http://192.168.1.121:5173"]
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://192.168.1.121:8000",
+    "http://localhost:5173",
+    "http://192.168.1.121:5173",
+]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "Authorization",
@@ -181,12 +186,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-JAZZMIN_SETTINGS ={
+JAZZMIN_SETTINGS = {
     # 'site_header':"KIRUGI MILK FARM",
-    'site_brand':"KIRUGI MILK FARM",
-    'site_logo':"assets/logo.png",
+    "site_brand": "KIRUGI MILK FARM",
+    "site_logo": "assets/logo.png",
     "login_logo": None,
     "site_logo_classes": "img-circle",
     "welcome_sign": "Welcome to the Admin Panel",
-    'copyright':"https://github.com/Mamba1099",
+    "copyright": "https://github.com/Mamba1099",
 }

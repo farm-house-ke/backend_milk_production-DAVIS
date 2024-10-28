@@ -1,7 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from django.db import models
-from datetime import timedelta
 from django.core.validators import (
     MinLengthValidator,
 )
@@ -69,7 +67,7 @@ class LocallyServicedAnimal(AnimalBase):
     name_of_owner = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
 
     class Meta:
-        verbose_name_plural= "local services"
+        verbose_name_plural = "local services"
 
 
 class MedicineTreatment(models.Model):

@@ -11,15 +11,18 @@ from .models import (
     ArtificialInsemination,
 )
 
+
 class ServingBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServingBase
         fields = "__all__"
 
+
 class BullServingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bull
         fields = "__all__"
+
 
 class AISerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,7 +34,6 @@ class AnimalBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = AnimalBase
         fields = "__all__"
-
 
 
 class PurchasedAnimalSerializer(serializers.ModelSerializer):

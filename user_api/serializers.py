@@ -22,7 +22,6 @@ class UserSignUpSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create the user with the validated data."""
-        is_staff = validated_data.pop("is_staff", False)
         user = User.objects.create_user(
             email=validated_data["email"],
             username=validated_data["username"],
@@ -49,8 +48,9 @@ class UserLoginSerializer(serializers.Serializer):
             }
         raise serializers.ValidationError("Invalid credentials")
 
-#user profile serializer
+
+# user profile serializer
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Profile
-        fields=['profile_image']
+        model = Profile
+        fields = ["profile_image"]

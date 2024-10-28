@@ -16,7 +16,6 @@ from .serializers import (
     BullServingSerializer,
     AISerializer,
     DisposalSerializer,
-
 )
 from .models import (
     AnimalBase,
@@ -30,17 +29,21 @@ from .models import (
     Disposal,
 )
 
+
 class ServingBaseViewSet(viewsets.ModelViewSet):
     queryset = ServingBase.objects.all()
     serializer_class = ServingBaseSerializer
+
 
 class BullViewSet(viewsets.ModelViewSet):
     queryset = Bull.objects.all()
     serializer_class = BullServingSerializer
 
+
 class AIViewSet(viewsets.ModelViewSet):
     queryset = ArtificialInsemination.objects.all()
     serializer_class = AISerializer
+
 
 class PurchasedViewSet(viewsets.ModelViewSet):
     queryset = PurchasedAnimal.objects.all()
@@ -78,6 +81,7 @@ class AnimalBaseViewSet(viewsets.ModelViewSet):
 class DisposalViewSet(viewsets.ModelViewSet):
     queryset = Disposal.objects.all()
     serializer_class = DisposalSerializer
+
 
 class GenderDistributionView(APIView):
 

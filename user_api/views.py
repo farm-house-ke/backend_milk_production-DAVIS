@@ -4,7 +4,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import login
-from .serializers import UserSignUpSerializer, UserLoginSerializer,UserProfileSerializer
+from .serializers import (
+    UserSignUpSerializer,
+    UserLoginSerializer,
+)
 from rest_framework.views import APIView
 from .models import Profile
 
@@ -44,18 +47,21 @@ class UserViewSet(viewsets.ViewSet):
                     "access_token": serializer.validated_data["access_token"],
                     "refresh_token": serializer.validated_data["refresh_token"],
                     "username": serializer.validated_data["user"].username,
-                    "profile_image": serializer.validated_data["user"].profile_image,
+                    # "profile_image": serializer.validated_data["user"].profile_image,
                 },
                 status=status.HTTP_200_OK,
             )
         logger.error(f"Login error: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#profile image upload view
+
+# profile image upload view
 class ProfileImageUploadView(APIView):
-    def post(self,request,*args,**kwargs):
-        profile=Profile.objects.get(user=request.user)
-        profile.profile_image=request.FILES.get('profile_image')
+    def post(self, request, *args, **kwargs):
+        profile = Profile.objects.get(user=request.user)
+        profile.profile_image = request.FILES.get("profile_image")
         profile.save()
-        return Response({'message':'profile image uploaded successfully'},status=status.HTTP_200_OK)
-    
+        return Response(
+            {"message": "profile image uploaded successfully"},
+            status=status.HTTP_200_OK,
+        )
