@@ -3,7 +3,7 @@ exclude =
     venv,
     .tox,
     manage.py,
-    migrations,
+    */migrations/*
     config/settings/*
 
 max-line-length = 190
