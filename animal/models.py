@@ -212,6 +212,12 @@ class ProductionBase(models.Model):
         # Calculate the total sales (local + dealers)
         return self.local_sales_quantity + self.dealers_sales_quantity
     
+    def get_total_deductions(self):
+        # Calculate the total deductions ( posho + calves feed)
+        total_calves_feed=sum(calf.quantity_taken for calf in self.calves.all())
+        return self.posho_quantity + total_calves_feed
+    
+        
 
 
 class Calf(models.Model):
