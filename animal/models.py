@@ -204,6 +204,10 @@ class ProductionBase(models.Model):
     date=models.DateField(default=date.today)#record the date
     timestamp=models.DateTimeField(auto_now_add=True)#record the timestamp/record of creation
     
+    def get_daily_production(self):
+        # Calculate the daily production(morning + evening)
+        return self.quantity_am + self.quantity_pm
+    
 
 
 class Calf(models.Model):
