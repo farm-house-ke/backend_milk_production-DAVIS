@@ -217,7 +217,28 @@ class ProductionBase(models.Model):
         total_calves_feed=sum(calf.quantity_taken for calf in self.calves.all())
         return self.posho_quantity + total_calves_feed
     
+    def calculate_balance(self):
+        #Calculate the balance:
+        #Total production - Total sales - Total deductions
+        #if balance !=0: carried over
+
+        total_production=self.get_daily_production()
+        total_sales=self.get_total_sales()
+        total_deductions=self.get_total_deductions()    
+
+        #calculating  balance
+        balance=total_production-total_sales-total_deductions
+
+        if balance < 0:
+            raise ValueError("Balance cannot be negative.Please Check your Data")
         
+        #ucarried over quantity
+        if balance == 0:
+            self.carried_over_quantity=0    
+        else:
+            self.carried_over_quantity=balance
+        
+        return balance
 
 
 class Calf(models.Model):
