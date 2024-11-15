@@ -197,8 +197,8 @@ class ProductionBase(models.Model):
     quantity_pm = models.IntegerField(default=0)  # Evening production (in liters)
     posho_quantity = models.IntegerField(default=0)  # Quantity for posho (in liters)
     sales_quantity = models.IntegerField(default=0)  # Quantity sold (in liters)
-    load_quantity = models.IntegerField(default=0)  # Quantity loaded (in liters)
-    deals_quantity = models.IntegerField(default=0)  # Quantity for deals (in liters)
+    local_sales_quantity = models.IntegerField(default=0)  # Quantity sold locally (in liters)
+    dealers_sales_quantity = models.IntegerField(default=0)  # Quantity sold to dealers (in liters)
     daily_total = models.IntegerField(
         default=0
     )  # Total production for the day (in liters)
