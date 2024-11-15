@@ -239,6 +239,11 @@ class ProductionBase(models.Model):
             self.carried_over_quantity=balance
         
         return balance
+    
+    def save(self, *args, **kwargs):
+        #ovveride save method to perform calculations before saving
+        self.balance_quantity=self.calculate_balance()
+        super().save(*args, **kwargs)
 
 
 class Calf(models.Model):
