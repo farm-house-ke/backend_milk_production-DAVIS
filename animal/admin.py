@@ -6,6 +6,7 @@ from .models import (
     LocallyServicedAnimal,
     MedicineTreatment,
     DosageTreatment,
+    ProductionBase
 )
 
 
@@ -13,3 +14,4 @@ admin.site.register(PurchasedAnimal)
 admin.site.register(LocallyServicedAnimal)
 admin.site.register(MedicineTreatment)
 admin.site.register(DosageTreatment)
+admin.site.register(ProductionBase)
