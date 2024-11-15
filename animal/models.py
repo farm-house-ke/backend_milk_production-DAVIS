@@ -208,6 +208,10 @@ class ProductionBase(models.Model):
         # Calculate the daily production(morning + evening)
         return self.quantity_am + self.quantity_pm
     
+    def get_total_sales(self):
+        # Calculate the total sales (local + dealers)
+        return self.local_sales_quantity + self.dealers_sales_quantity
+    
 
 
 class Calf(models.Model):
