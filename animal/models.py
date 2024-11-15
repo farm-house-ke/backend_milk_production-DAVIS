@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.db import models
-from datetime import timedelta
+from datetime import timedelta,date
 from django.core.validators import (
     MinLengthValidator,
 )
