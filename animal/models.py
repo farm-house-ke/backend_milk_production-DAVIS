@@ -199,17 +199,10 @@ class ProductionBase(models.Model):
     sales_quantity = models.IntegerField(default=0)  # Quantity sold (in liters)
     local_sales_quantity = models.IntegerField(default=0)  # Quantity sold locally (in liters)
     dealers_sales_quantity = models.IntegerField(default=0)  # Quantity sold to dealers (in liters)
-    daily_total = models.IntegerField(
-        default=0
-    )  # Total production for the day (in liters)
-    balance_quantity = models.IntegerField(
-        default=0
-    )  # Balance after adjustments (in liters)
-    carried_over_quantity = models.IntegerField(
-        default=0
-    )  # Remaining carried to the next day (in liters)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
+    balance_quantity = models.IntegerField(default=0)  # Balance after sales (in liters)_quantity
+    carried_over_quantity=models.IntegerField(default=0)
+    date=models.DateField(default=date.today)#record the date
+    timestamp=models.DateTimeField(auto_now_add=True)#record the timestamp/record of creation
     def get_daily_total(self):
         """Calculate the total production for the day (AM + PM, in liters)."""
         return self.quantity_am + self.quantity_pm
