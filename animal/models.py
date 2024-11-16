@@ -248,11 +248,12 @@ class ProductionBase(models.Model):
 
 class Calf(models.Model):
     """Model for individual calves and their milk consumption (in liters)"""
-
+    animal=models.ForeignKey(AnimalBase,on_delete=models.CASCADE,related_name='calves')
     calf_name = models.CharField(max_length=100)
     quantity_taken = models.IntegerField(
         default=0
     )  # Quantity taken by this calf (in liters)
+    timestamp=models.DateTimeField(auto_now_add=True)#record the timestamp/record of creation
 
     def __str__(self):
-        return f"{self.calf_name} took {self.quantity_taken} liters"
+        return f"{self.calf_name} (Animal:{self.animal.animal_name}) took {self.quantity_taken} liters of milk"

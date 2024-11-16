@@ -7,7 +7,7 @@ from .models import (
     MedicineTreatment,
     DosageTreatment,
     ProductionBase,
-    Calf
+    Calf,
 )
 
 
