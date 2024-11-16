@@ -248,7 +248,7 @@ class ProductionBase(models.Model):
 
 class Calf(models.Model):
     """Model for individual calves and their milk consumption (in liters)"""
-    animal=models.ForeignKey(AnimalBase,on_delete=models.CASCADE,related_name='calves')
+    animal=models.ForeignKey(AnimalBase,on_delete=models.CASCADE,related_name='calves',null=True,blank=True)
     calf_name = models.CharField(max_length=100)
     quantity_taken = models.IntegerField(
         default=0
