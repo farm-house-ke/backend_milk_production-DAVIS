@@ -214,7 +214,7 @@ class ProductionBase(models.Model):
     
     def get_total_deductions(self):
         # Calculate the total deductions ( posho + calves feed)
-        total_calves_feed=sum(calf.quantity_taken for calf in self.calves.all())
+        total_calves_feed=sum(calf.quantity_taken for calf in self.animal_name.calves.all())
         return self.posho_quantity + total_calves_feed
     
     def calculate_balance(self):
